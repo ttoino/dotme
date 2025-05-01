@@ -9,7 +9,7 @@ import {
 
 const timestamps = {
   createdAt: timestamp().defaultNow().notNull(),
-  updatedAt: timestamp().onUpdateNow().notNull(),
+  updatedAt: timestamp().defaultNow().onUpdateNow().notNull(),
   deletedAt: timestamp(),
 };
 

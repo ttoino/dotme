@@ -5,7 +5,7 @@ import { drizzle } from "drizzle-orm/singlestore";
 const client = mysql.createPool(process.env.DATABASE_URL!);
 const db = drizzle({
     client,
-    casing: "snake_case",
+    // casing: "snake_case",
 });
 
 export default db;
