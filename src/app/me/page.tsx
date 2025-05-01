@@ -1,10 +1,24 @@
+"use client";
+
 import Image from "next/image";
 import { Github, Mail, Linkedin, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { useEffect, useState } from "react";
+import { Separator } from "@/components/ui/separator";
+import { roles, cvData, experiences, areas } from "@/mock/cv1";
+import { renderRichText } from "@/lib/utils";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 
 export default function Portfolio() {
+  const [viewMode, setViewMode] = useState("chronological"); // chronological | group by area
+
+  const [data, setData] = useState({});
+
+  console.log(areas.length + 1);
+
+  useEffect(() => {}, [viewMode]);
   return (
     <main className="min-h-screen bg-white">
       <section className="flex flex-col gap-3 items-center p-3">
@@ -38,6 +52,10 @@ export default function Portfolio() {
         </div>
       </section>
 
+      <div className="p-5">
+        <Separator className="" />
+      </div>
+
       <section className="flex flex-col gap-3 items-center p-3">
         <h2 className="text-2xl md:text-3xl font-bold text-center mb-8">
           About Me
@@ -53,12 +71,49 @@ export default function Portfolio() {
         </div>
       </section>
 
-      <section className="flex flex-col gap-3 items-center p-3">
-        <div className="grid grid-cols-8 grid-rows-8 gap-6"></div>
+      <div className="p-5">
+        <Separator className="" />
+      </div>
+
+      <Tabs defaultValue="home" className="w-50% flex justify-center">
+        <TabsList className={`grid w-full grid-cols-${areas.length + 1}`}>
+          <TabsTrigger value="home">Home</TabsTrigger>
+          {areas.map((area, index) => (
+            <TabsTrigger value={area.name} key={`area-${index}`}>
+              {area.name.charAt(0).toUpperCase() + area.name.slice(1)}
+            </TabsTrigger>
+          ))}
+        </TabsList>
+        {areas.map((area, index) => (
+          <TabsContent value={area.name}></TabsContent>
+        ))}
+      </Tabs>
+
+      <section className="w-50% flex justify-center">
+        <div className="flex flex-col gap-5 p-3">
+          {roles.map((role, index) => (
+            <div key={index}>
+              <article>
+                <span className="font-bold flex gap-2">
+                  <p>{role.title}</p>
+                  <p className="text-blue-400">@</p>
+                  <p>{role.organization}</p>
+                </span>
+                <p className="text-gray-600">
+                  {role.startDate} - {role.endDate}
+                </p>
+                <span className="text-gray-600">
+                  {renderRichText(role.description)}
+                </span>
+              </article>
+              {index < roles.length - 1 && <Separator className="my-4" />}
+            </div>
+          ))}
+        </div>
       </section>
 
       {/* Projects Section */}
-      <section className="py-12 md:py-24 bg-gray-50">
+      {/* <section className="py-12 md:py-24 bg-gray-50">
         <div className="container px-4 md:px-6">
           <h2 className="text-2xl md:text-3xl font-bold text-center mb-12">
             My Projects
@@ -99,10 +154,9 @@ export default function Portfolio() {
             ))}
           </div>
         </div>
-      </section>
-
+      </section> */}
       {/* Skills Section */}
-      <section className="py-12 md:py-24">
+      {/* <section className="py-12 md:py-24">
         <div className="container px-4 md:px-6">
           <h2 className="text-2xl md:text-3xl font-bold text-center mb-12">
             Skills
@@ -126,104 +180,10 @@ export default function Portfolio() {
             ))}
           </div>
         </div>
-      </section>
-
-      {/* Contact Section */}
-      <section className="py-12 md:py-24 bg-gray-50">
-        <div className="container px-4 md:px-6">
-          <h2 className="text-2xl md:text-3xl font-bold text-center mb-12">
-            Get In Touch
-          </h2>
-          <div className="max-w-md mx-auto">
-            <form className="space-y-6">
-              <div className="space-y-2">
-                <label htmlFor="name" className="text-sm font-medium">
-                  Name
-                </label>
-                <input
-                  id="name"
-                  className="w-full p-2 border border-gray-300 rounded-md"
-                  placeholder="Your name"
-                />
-              </div>
-              <div className="space-y-2">
-                <label htmlFor="email" className="text-sm font-medium">
-                  Email
-                </label>
-                <input
-                  id="email"
-                  type="email"
-                  className="w-full p-2 border border-gray-300 rounded-md"
-                  placeholder="your.email@example.com"
-                />
-              </div>
-              <div className="space-y-2">
-                <label htmlFor="message" className="text-sm font-medium">
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  rows={4}
-                  className="w-full p-2 border border-gray-300 rounded-md"
-                  placeholder="Your message"
-                />
-              </div>
-              <Button className="w-full">Send Message</Button>
-            </form>
-          </div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="py-6 bg-gray-900 text-white">
-        <div className="container px-4 md:px-6">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <p>© 2025 John Doe. All rights reserved.</p>
-            <div className="flex space-x-4 mt-4 md:mt-0">
-              <Button variant="ghost" size="icon">
-                <Github className="h-5 w-5" />
-                <span className="sr-only">GitHub</span>
-              </Button>
-              <Button variant="ghost" size="icon">
-                <Linkedin className="h-5 w-5" />
-                <span className="sr-only">LinkedIn</span>
-              </Button>
-              <Button variant="ghost" size="icon">
-                <Mail className="h-5 w-5" />
-                <span className="sr-only">Email</span>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </footer>
+      </section> */}
     </main>
   );
 }
-
-// Sample data
-const projects = [
-  {
-    title: "E-commerce Platform",
-    description:
-      "A full-featured online store with payment processing and inventory management.",
-    image: "/placeholder.svg?height=192&width=384",
-    technologies: ["Next.js", "Stripe", "MongoDB", "Tailwind CSS"],
-  },
-  {
-    title: "Task Management App",
-    description:
-      "A collaborative task management tool with real-time updates and team features.",
-    image: "/placeholder.svg?height=192&width=384",
-    technologies: ["React", "Firebase", "Material UI", "TypeScript"],
-  },
-  {
-    title: "Health & Fitness Tracker",
-    description:
-      "Mobile-first application for tracking workouts, nutrition, and health metrics.",
-    image: "/placeholder.svg?height=192&width=384",
-    technologies: ["React Native", "Redux", "Node.js", "Express"],
-  },
-];
 
 const skills = [
   "JavaScript",
