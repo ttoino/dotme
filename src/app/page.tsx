@@ -12,10 +12,6 @@ export default function HomePage() {
       <div className="flex-1">
         <header className="sticky top-0 z-10 bg-background border-b border-border px-4 py-3">
           <div className="flex items-center justify-between max-w-5xl mx-auto">
-            <div className="md:hidden flex items-center">
-              <FileText className="h-6 w-6 mr-2" />
-              <h1 className="text-xl font-bold">CareerHub</h1>
-            </div>
             <div className="relative w-full max-w-md mx-4 hidden md:block">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <input
@@ -38,7 +34,6 @@ export default function HomePage() {
         </header>
 
         <main className="max-w-3xl mx-auto px-4 py-6 space-y-6">
-          {/* --- CARD 1 --- */}
           <Card>
             <CardHeader className="flex flex-row items-start space-x-4 pb-3">
               <Avatar className="h-10 w-10">
@@ -74,7 +69,6 @@ export default function HomePage() {
             </CardFooter>
           </Card>
 
-          {/* --- CARD 2 --- */}
           <Card>
             <CardHeader className="flex flex-row items-start space-x-4 pb-3">
               <Avatar className="h-10 w-10">
@@ -110,7 +104,6 @@ export default function HomePage() {
             </CardFooter>
           </Card>
 
-          {/* --- CARD 3 --- */}
           <Card>
             <CardHeader className="flex flex-row items-start space-x-4 pb-3">
               <Avatar className="h-10 w-10">
