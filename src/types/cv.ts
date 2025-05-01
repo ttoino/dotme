@@ -10,7 +10,6 @@ export interface info {
   profile_picture?: Image;
   roles: string[];
   bio?: RichText;
-  age?: number;
 }
 
 export interface contacts {

@@ -25,7 +25,6 @@ export const cvTable = singlestoreTable("cv_table", {
   info_profilePicture: json().$type<Image>(),
   info_roles: json().$type<string[]>(),
   info_bio: json().$type<RichText>(),
-  info_age: int({ unsigned: true }),
   contacts_email: varchar({ length: 255 }),
   contacts_phone: varchar({ length: 20 }),
   contacts_github: varchar({ length: 255 }),
@@ -38,7 +37,7 @@ export const areasTable = singlestoreTable("areas_table", {
   id: int({ unsigned: true }).autoincrement().primaryKey(),
   cvId: int({ unsigned: true }).notNull(),
   name: varchar({ length: 255 }).notNull(),
-  links: json().$type<link[]>(),
+  links: json().$type<Link[]>(),
   ...timestamps,
 });
 
@@ -49,6 +48,6 @@ export const experiencesTable = singlestoreTable("experiences_table", {
   description: json().$type<RichText>(),
   location: varchar({ length: 255 }),
   roles: json().$type<role[]>(),
-  links: json().$type<link[]>(),
+  links: json().$type<Link[]>(),
   ...timestamps,
 });

@@ -32,9 +32,11 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <SessionProvider sessionPromise={session}>{children}</SessionProvider>
-        <NavBar />
-        {children}
+        <SessionProvider sessionPromise={session}>
+          {" "}
+          <NavBar />
+          {children}
+        </SessionProvider>
       </body>
     </html>
   );
