@@ -67,7 +67,6 @@ const contacts: cv.contacts = {
 
 const kevel_internship: cv.role = {
   title: "Software Engineer Intern",
-  organization: "Kevel",
   startDate: "July 2023",
   endDate: "July 2023",
   description: [
@@ -129,7 +128,6 @@ const work: cv.area = {
 
 const ni_vice: cv.role = {
   title: "Vice-President and Head of Human Resources",
-  organization: "NIAEFEUP",
   startDate: "Jun 2022",
   endDate: "Present",
   description: [
@@ -161,7 +159,6 @@ const ni_vice: cv.role = {
 
 const ni_tts: cv.role = {
   title: "Project Manager of TTS",
-  organization: "NIAEFEUP",
   startDate: "Jun 2022",
   endDate: "Present",
   description: [
@@ -222,7 +219,6 @@ const ni_tts: cv.role = {
 
 const ni_member: cv.role = {
   title: "Member SINF Program Department",
-  organization: "NIAEFEUP",
   startDate: "Jun 2022",
   endDate: "Present",
   description: [
@@ -326,7 +322,6 @@ const extracurricular: cv.area = {
 
 const shift_appens: cv.role = {
   title: "2nd Place",
-  organization: "ShiftAppens",
   startDate: "Apr 2024",
   endDate: "Apr 2024",
   description: [
@@ -362,7 +357,6 @@ const shift_appens: cv.role = {
 
 const code_hero: cv.role = {
   title: "3rd Place",
-  organization: "Code Hero - Aveiro",
   startDate: "2021",
   endDate: "2021",
   description: [
@@ -430,7 +424,6 @@ const languages: cv.skill[] = [
 
 const education_feup_msc: cv.role = {
   title: "MSC IN INFORMATICS ENGINEERING AND COMPUTATION - 16.6 AVERAGE",
-  organization: "FEUP",
   startDate: "Oct 2024",
   endDate: "2026",
   description: [], // You can add a description if needed
@@ -438,7 +431,6 @@ const education_feup_msc: cv.role = {
 
 const education_feup_bsc: cv.role = {
   title: "BSC IN INFORMATICS ENGINEERING AND COMPUTATION - 16.45 AVERAGE",
-  organization: "FEUP",
   startDate: "Oct 2021",
   endDate: "2024",
   description: [], // You can add a description if needed

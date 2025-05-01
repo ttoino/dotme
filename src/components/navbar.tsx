@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { LogOut, Settings } from "lucide-react";
 
@@ -13,7 +14,13 @@ export default function Navbar() {
       <div className="container mx-auto flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="text-xl font-bold tracking-tight">
-          <span className="text-primary">MyLogo</span>
+          <Image
+            src="/logo.svg"
+            alt="Logo"
+            width={120}
+            height={30}
+            className="mr-2"
+          />
         </Link>
 
         {/* Nav Links */}
