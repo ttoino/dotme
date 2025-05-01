@@ -110,4 +110,4 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: registry.toino.pt/website:latest
-          target: prod
+          target: runner
