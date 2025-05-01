@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import NavBar from "@/components/navbar";
 import "./globals.css";
 import { getSession } from "@/lib/auth";
 import { SessionProvider } from "@/components/SessionProvider";
@@ -31,9 +32,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <SessionProvider sessionPromise={session}>
-          {children}
-        </SessionProvider>
+        <SessionProvider sessionPromise={session}>{children}</SessionProvider>
+        <NavBar />
+        {children}
       </body>
     </html>
   );

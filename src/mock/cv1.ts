@@ -454,4 +454,15 @@ const cvData: cv.CV = {
   skills: [...skills, ...languages],
 };
 
-export default cvData;
+const roles: cv.role[] = [
+  kevel_internship,
+  ni_vice,
+  ni_tts,
+  ni_member,
+  shift_appens,
+  code_hero,
+];
+const experiences: cv.experience[] = [kevel, ni, enei];
+const areas: cv.area[] = [work, extracurricular, achievements, education];
+
+export { cvData, roles, experiences, areas };
