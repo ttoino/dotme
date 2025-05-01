@@ -9,8 +9,6 @@ const timestamps = {
 
 export const usersTable = singlestoreTable('users_table', {
   email: varchar({ length: 255 }).primaryKey(),
-  password: varchar({ length: 255 }).notNull(),
-  portfolio: json().$type<CV>().notNull(),
   ...timestamps,
 });
 
@@ -26,7 +24,7 @@ export const cvTable = singlestoreTable('cv_table', {
   contacts_phone: varchar({ length: 20 }),
   contacts_github: varchar({ length: 255 }),
   contacts_linkedin: varchar({ length: 255 }),
-  skills: json().$type<skill>(),
+  skills: json().$type<skill[]>(),
   ...timestamps
 });
 
