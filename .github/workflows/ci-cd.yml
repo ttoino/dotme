@@ -109,5 +109,5 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: registry.toino.pt/website:latest
+          tags: registry.toino.pt/dotme:latest
           target: runner
