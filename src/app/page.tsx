@@ -1,103 +1,159 @@
-import Image from "next/image";
+import Link from "next/link"
+import Image from "next/image"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Badge } from "@/components/ui/badge"
+import { Briefcase, FileText, Search } from "lucide-react"
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="flex min-h-screen bg-background text-foreground">
+      <div className="flex-1">
+        <header className="sticky top-0 z-10 bg-background border-b border-border px-4 py-3">
+          <div className="flex items-center justify-between max-w-5xl mx-auto">
+            <div className="md:hidden flex items-center">
+              <FileText className="h-6 w-6 mr-2" />
+              <h1 className="text-xl font-bold">CareerHub</h1>
+            </div>
+            <div className="relative w-full max-w-md mx-4 hidden md:block">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+              <input
+                type="text"
+                placeholder="Search for people, jobs, or updates..."
+                className="w-full pl-10 pr-4 py-2 rounded-full border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+              />
+            </div>
+            <div className="flex items-center space-x-4">
+              <Button variant="outline" size="sm" className="hidden md:flex">
+                <FileText className="h-4 w-4 mr-2" />
+                Generate CV
+              </Button>
+              <Button size="sm">
+                <Briefcase className="h-4 w-4 mr-2" />
+                Update Profile
+              </Button>
+            </div>
+          </div>
+        </header>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+        <main className="max-w-3xl mx-auto px-4 py-6 space-y-6">
+          {/* --- CARD 1 --- */}
+          <Card>
+            <CardHeader className="flex flex-row items-start space-x-4 pb-3">
+              <Avatar className="h-10 w-10">
+                <AvatarImage src="/placeholder.svg?height=40&width=40" alt="Sarah Johnson" />
+                <AvatarFallback>SJ</AvatarFallback>
+              </Avatar>
+              <div className="flex-1">
+                <div className="flex items-center justify-between">
+                  <CardTitle className="text-base">Sarah Johnson</CardTitle>
+                  <Badge variant="outline" className="ml-2">New Position</Badge>
+                </div>
+                <CardDescription>Product Designer • 2 hours ago</CardDescription>
+              </div>
+            </CardHeader>
+            <CardContent>
+              <p>
+                I am excited to announce that I have joined <span className="font-medium">Acme Inc</span> as a Senior Product Designer! Looking forward to creating amazing user experiences with this talented team.
+              </p>
+              <div className="mt-4 bg-card p-4 rounded-lg border border-border">
+                <div className="flex items-center">
+                  <Briefcase className="h-5 w-5 text-muted-foreground mr-2" />
+                  <div>
+                    <p className="font-medium">Senior Product Designer at Acme Inc</p>
+                    <p className="text-sm text-muted-foreground">May 2023 - Present • San Francisco, CA</p>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+            <CardFooter className="border-t border-border pt-4 flex justify-between">
+              <Button variant="ghost" size="sm">👏 Congratulate</Button>
+              <Button variant="ghost" size="sm">💬 Comment</Button>
+              <Button variant="ghost" size="sm">🔗 Share</Button>
+            </CardFooter>
+          </Card>
+
+          {/* --- CARD 2 --- */}
+          <Card>
+            <CardHeader className="flex flex-row items-start space-x-4 pb-3">
+              <Avatar className="h-10 w-10">
+                <AvatarImage src="/placeholder.svg?height=40&width=40" alt="Michael Chen" />
+                <AvatarFallback>MC</AvatarFallback>
+              </Avatar>
+              <div className="flex-1">
+                <div className="flex items-center justify-between">
+                  <CardTitle className="text-base">Michael Chen</CardTitle>
+                  <Badge variant="outline" className="ml-2">Certification</Badge>
+                </div>
+                <CardDescription>Software Engineer • 1 day ago</CardDescription>
+              </div>
+            </CardHeader>
+            <CardContent>
+              <p>
+                Just completed the AWS Solutions Architect certification! Excited to apply these cloud architecture skills to my projects.
+              </p>
+              <div className="mt-4 bg-card p-4 rounded-lg border border-border">
+                <div className="flex items-center">
+                  <FileText className="h-5 w-5 text-muted-foreground mr-2" />
+                  <div>
+                    <p className="font-medium">AWS Certified Solutions Architect - Associate</p>
+                    <p className="text-sm text-muted-foreground">Issued May 2023 • Expires May 2026</p>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+            <CardFooter className="border-t border-border pt-4 flex justify-between">
+              <Button variant="ghost" size="sm">👏 Congratulate</Button>
+              <Button variant="ghost" size="sm">💬 Comment</Button>
+              <Button variant="ghost" size="sm">🔗 Share</Button>
+            </CardFooter>
+          </Card>
+
+          {/* --- CARD 3 --- */}
+          <Card>
+            <CardHeader className="flex flex-row items-start space-x-4 pb-3">
+              <Avatar className="h-10 w-10">
+                <AvatarImage src="/placeholder.svg?height=40&width=40" alt="Emily Rodriguez" />
+                <AvatarFallback>ER</AvatarFallback>
+              </Avatar>
+              <div className="flex-1">
+                <div className="flex items-center justify-between">
+                  <CardTitle className="text-base">Emily Rodriguez</CardTitle>
+                  <Badge variant="outline" className="ml-2">Project Launch</Badge>
+                </div>
+                <CardDescription>Frontend Developer • 3 days ago</CardDescription>
+              </div>
+            </CardHeader>
+            <CardContent>
+              <p>
+                Thrilled to share that our team just launched the redesigned company website! Check it out at
+                <Link href="#" className="text-primary hover:underline ml-1">example.com</Link>
+              </p>
+              <div className="mt-4 bg-card rounded-lg border border-border overflow-hidden">
+                <Image
+                  src="/placeholder.svg"
+                  alt="Website screenshot"
+                  width={600}
+                  height={200}
+                  className="w-full h-48 object-cover"
+                />
+                <div className="p-4">
+                  <p className="font-medium">Company Website Redesign</p>
+                  <p className="text-sm text-muted-foreground">
+                    A complete overhaul of our digital presence with improved UX and performance
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+            <CardFooter className="border-t border-border pt-4 flex justify-between">
+              <Button variant="ghost" size="sm">👏 Congratulate</Button>
+              <Button variant="ghost" size="sm">💬 Comment</Button>
+              <Button variant="ghost" size="sm">🔗 Share</Button>
+            </CardFooter>
+          </Card>
+        </main>
+      </div>
     </div>
-  );
+  )
 }

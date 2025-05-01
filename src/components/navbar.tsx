@@ -9,17 +9,15 @@ export default function Navbar() {
   const user = { name: "John Doe", image: "/avatar.png" };
 
   return (
-    <nav className="w-full px-4 py-3 border-b bg-background">
+    <nav className="sticky top-0 z-10 w-full px-4 py-3 border-b bg-background">
       <div className="container mx-auto flex items-center justify-between">
-        {/* Logo */}
         <Link href="/" className="text-xl font-bold tracking-tight">
           <span className="text-primary">MyLogo</span>
         </Link>
 
-        {/* Nav Links */}
         <div className="hidden md:flex gap-6 items-center text-sm font-medium text-muted-foreground">
           <Link
-            href="/feed"
+            href="/"
             className="hover:text-foreground transition-colors"
           >
             Feed
@@ -37,7 +35,6 @@ export default function Navbar() {
             Contact
           </Link>
         </div>
-        {/* Right Section: Icons and Avatar */}
         <div className="flex items-center gap-4">
           <Link href="/me">
             <Button
@@ -52,7 +49,6 @@ export default function Navbar() {
             </Button>
           </Link>
 
-          {/* Settings */}
           <Link href="/settings">
             <Button
               variant="ghost"
@@ -64,7 +60,6 @@ export default function Navbar() {
             </Button>
           </Link>
 
-          {/* Logout */}
           <Button
             variant="ghost"
             size="icon"
@@ -75,7 +70,6 @@ export default function Navbar() {
             <LogOut className="h-5 w-5" />
           </Button>
 
-          {/* Avatar -> Profile */}
         </div>
       </div>
     </nav>
