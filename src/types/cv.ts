@@ -1,5 +1,3 @@
-import { Blob } from "buffer";
-
 export interface CV {
   info: info;
   contacts: contacts;
@@ -64,14 +62,6 @@ export type RichTextNode =
   | { type: "paragraph"; children: RichTextNode[] };
 
 export type RichText = RichTextNode[];
-
-export interface Image {
-  url: string;
-  alt?: string;
-  width?: number;
-  height?: number;
-  caption?: string;
-}
 
 export interface Link {
   text: string;
