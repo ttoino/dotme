@@ -9,16 +9,6 @@ import PortfolioEntry from "./portfolio-entry";
 import { getPortfolioEntries } from "@/lib/portfolio";
 import { useSession } from "../SessionProvider";
 import { portfolio_entry } from "@/types/cv";
-import { User } from "@/types/user";
-
-
-const experienceItems = experiences.flatMap((experience, areaIndex) => ({
-  i: experience.organization, // Unique identifier for each item
-  x: experience.x, // Adjust the x position based on your layout preferences
-  y: experience.y, // Adjust the y position based on the areaIndex or any logic you prefer
-  w: experience.w, // Width of the grid item
-  h: experience.h, // Height of the grid item
-}));
 
 const ProfileGrid = () => {
 
@@ -40,14 +30,13 @@ const ProfileGrid = () => {
     )
   }
 
-  
+
   
 
   return (
     <div className="p-4">
       <GridLayout
         className="layout"
-        layout={portfolioInfo}
         cols={4}
         rowHeight={250}
         width={1000}
@@ -56,7 +45,7 @@ const ProfileGrid = () => {
         isDraggable
       >
         {portfolioInfo.map(info => (
-          <div key={info.id?.toString()} className="bg-white border rounded shadow p-2 drag-handle cursor-move">
+          <div key={info.id?.toString()} data-grid={{ x: info.x, y: info.y, w: info.w, h: info.h}} className="bg-white border rounded shadow p-2 drag-handle cursor-move">
             <PortfolioEntry portfolio_entry={info} />
           </div>
         ))}

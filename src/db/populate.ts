@@ -266,9 +266,28 @@ db.insert(portfolioTable).values({
   type: "experience",
   foreignId: "NIAEFEUP",
   x:0,
+  y:0,
+  width:4,
+  height:4,
+})
+
+db.insert(portfolioTable).values({
+  userId: "diogo@dotme.com",
+  type: "skill",
+  foreignId: "Chefe",
+  x:0,
   y:1,
   width:4,
   height:4,
 })
 
+db.insert(portfolioTable).values({
+  userId: "diogo@dotme.com",
+  type: "role",
+  foreignId: "Software Engineer Intern",
+  x:0,
+  y:2,
+  width:4,
+  height:4,
+})
 
