@@ -14,6 +14,7 @@ INSERT INTO cv_table (
         contacts_phone,
         contacts_github,
         contacts_linkedin,
+        areas,
         skills
     )
 VALUES (
@@ -73,7 +74,34 @@ VALUES (
         '965358804',
         'github.com/diogotvf7',
         'linkedin.com/in/diogotv-fernandes',
-        '[
+        '' [
+  {
+    "id": 1,
+    "title": "NIAEFEUP",
+    "description": [
+      {
+        "type": "paragraph",
+        "children": [
+          { "type": "text", "text": "NIAEFEUP is the ..." }
+        ] } ],
+        "location": "Porto, Portugal",
+        "roles": [
+      {
+        "title": "Vice-President and Head of Human Resources",
+        "startDate": "Jun 2022",
+        "endDate": "Present",
+        "description": [
+          {
+            "type": "list",
+            "items": [
+              [
+                { "type": "text", "text": "As the " },
+                { "type": "text", "text": "Vice President", "bold": true },
+                { "type": "text", "text": ", I support ..." }
+              ] ] } ],
+        "achievements": [] } ] } ] '
+',
+        ' [
         { "title": "C" },
         { "title": "C++" },
         { "title": "Dart" },
@@ -100,44 +128,9 @@ VALUES (
         { "title": "Tailwind" },
         { "title": "Typescript" },
         { "title": "Docker" }
-    ]'
+    ] '
     );
-INSERT INTO areas_table (cvId, name)
-VALUES (1, "Experience");
-INSERT INTO experiences_table (
-        areaId,
-        organization,
-        description,
-        location,
-        roles,
-        links
-    )
-VALUES (
-        1,
-        'NIAEFEUP',
-        '[
-      {
-        "type": "paragraph",
-        "children": [
-          { "type": "text", "text": "NIAEFEUP is the " },
-          { "type": "text", "text": "Informatics Student Group", "bold": true },
-          { "type": "text", "text": " at the Faculty of Engineering of the University of Porto (" },
-          { "type": "text", "text": "FEUP", "bold": true },
-          { "type": "text", "text": "), dedicated to promoting " },
-          { "type": "text", "text": "student development", "bold": true },
-          { "type": "text", "text": " through " },
-          { "type": "text", "text": "academic events", "bold": true },
-          { "type": "text", "text": ", " },
-          { "type": "text", "text": "workshops", "bold": true },
-          { "type": "text", "text": ", and " },
-          { "type": "text", "text": "open-source projects", "bold": true },
-          { "type": "text", "text": "." }
-        ]
-      }
-    ]',
-        'Porto, Portugal',
-        '[1, 2]',
-        '[]'
-    );
+
+
 INSERT INTO portfolio_table (userId, type, foreignId, x, y, width, height)
 VALUES ("diogo@dotme.com", "experience", "NIAEFEUP", 0, 1, 4, 4)

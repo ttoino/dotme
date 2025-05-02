@@ -1,28 +1,28 @@
 "use client";
 
+import { use } from "react";
+import { useSession } from "@/components/SessionProvider";
 import Image from "next/image";
 import { Github, Mail, Linkedin } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardTitle,
-  CardHeader,
-} from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { Card, CardContent, CardTitle, CardHeader } from "@/components/ui/card";
 import { useEffect, useState } from "react";
 import { Separator } from "@/components/ui/separator";
 import { areas } from "@/mock/cv1";
 import { renderRichText } from "@/lib/utils";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import ProfileGrid from "@/components/ui/profile-grid";
+import { getUser } from "@/lib/user";
 
-export default function Portfolio() {
-  const [viewMode, /* setViewMode */] = useState("chronological"); // chronological | group by area
+export default function Portfolio({ id }: { id: string }) {
+  const { sessionPromise } = useSession();
+  const session = use(sessionPromise);
+  const userPromisse = id ? getUser(id) : sessionPromise;
+  const user_data = use(userPromisse);
 
-  // const [data, setData] = useState({});
+  const [viewMode /* setViewMode */] = useState("chronological"); // chronological | group by area
+
+  console.log(user_data);
 
   useEffect(() => {}, [viewMode]);
   return (
@@ -41,10 +41,10 @@ export default function Portfolio() {
 
         <section className="flex flex-col gap-3 justify-center items-center flex-grow p-3">
           <h1 className="text-3xl md:text-5xl font-bold tracking-tighter">
-            Ruben Esteves
+            {user_data?.portfolio.info.name}
           </h1>
           <p className="text-xl md:text-2xl text-gray-600">
-            Department Manager @ Kidzania
+            {user_data?.portfolio.info.roles.join(", ")}
           </p>
 
           <div className="flex space-x-4">
@@ -69,11 +69,11 @@ export default function Portfolio() {
       </div>
 
       <section className="w-1/2 items-center p-3">
-        <Tabs defaultValue="home" className="">
+        <Tabs defaultValue="about-me" className="">
           <TabsList className={`w-full`}>
             <TabsTrigger value="home">Home</TabsTrigger>
             <TabsTrigger value="about-me">About Me</TabsTrigger>
-            {areas.map((area, index) => (
+            {user_data?.portfolio.areas.map((area, index) => (
               <TabsTrigger value={area.name} key={`area-${index}`}>
                 {area.name.charAt(0).toUpperCase() + area.name.slice(1)}
               </TabsTrigger>
@@ -83,17 +83,18 @@ export default function Portfolio() {
             <ProfileGrid/>
           </TabsContent>
           <TabsContent value="about-me">
-            <h2 className="text-2xl md:text-3xl font-bold mb-8">About Me</h2>
-            <div className="max-w-3xl mx-auto">
-              <p className="text-gray-600 mb-6">
-                I&apos;m a passionate Full Stack Developer with 5+ years of
-                experience building web applications. I specialize in React,
-                Next.js, Node.js, and modern web technologies. My goal is to
-                create intuitive, efficient, and beautiful digital experiences.
-              </p>
-            </div>
+            {user_data?.portfolio.info.bio && (
+              <>
+                <h2 className="text-2xl md:text-3xl font-bold mb-8">
+                  About Me
+                </h2>
+                <div className="max-w-3xl mx-auto text-gray-600 mb-6">
+                  {renderRichText(user_data.portfolio.info.bio)}
+                </div>
+              </>
+            )}
           </TabsContent>
-          {areas.map((area, index) => (
+          {user_data?.portfolio.areas.map((area) => (
             <TabsContent
               className="my-5"
               value={area.name}
@@ -115,9 +116,11 @@ export default function Portfolio() {
                             <p className="text-gray-600">
                               {role.startDate} - {role.endDate}
                             </p>
-                            <span className="text-gray-600">
-                              {renderRichText(role.description)}
-                            </span>
+                            {role.description && (
+                              <span className="text-gray-600">
+                                {renderRichText(role.description)}
+                              </span>
+                            )}
                           </div>
                           {index < entry.roles.length - 1 && (
                             <Separator className="my-4" />
