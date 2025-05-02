@@ -2,6 +2,7 @@ import { categoryLabels, Template } from "@/types/template";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "./ui/card";
 import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
+import { renderRichText } from "@/lib/utils";
 
 export default function TemplateCard({ template }: { template: Template }) {
     return (
@@ -20,7 +21,7 @@ export default function TemplateCard({ template }: { template: Template }) {
             </CardHeader>
             <CardContent>
                 <CardDescription>
-                    {template.description}
+                    {renderRichText(template.description)}
                 </CardDescription>
             </CardContent>
             <CardFooter className="flex flex-row gap-2">

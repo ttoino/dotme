@@ -6,7 +6,10 @@ import { Search } from "lucide-react";
 export default function Market() {
     const templates = new Array(30).fill(null).map((_, i) => ({
         name: `Template ${i + 1}`,
-        description: `This is a description of the template. It provides a brief overview of what the template is about and its features.`,
+        description: [{
+            type: "text",
+            text: "This is a description of the template. It provides a brief overview of what the template is about and its features.",
+        }],
         image: `https://picsum.photos/1600/900?i=${i}`,
         category: categories[Math.floor(Math.random() * categories.length)],
         price: Math.random() * 100,
