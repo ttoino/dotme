@@ -1,7 +1,6 @@
 "use client"
 
 import React, { useEffect, useState } from "react";
-import { getExperienceFromNameAndEmail } from "@/lib/experiences";
 import { useSession } from "../SessionProvider";
 import { area, experience, portfolio_entry, RichText } from "@/types/cv";
 import RichTextRenderer from "./rich-text-renderer";
@@ -17,6 +16,7 @@ interface entry_contents {
   type?: string ,
   title?: string,
   description?: RichText,
+  level?: number
 }
 
 const PortfolioEntry: React.FC<PortfolioEntryProps> = ({ portfolio_entry }) => {
@@ -41,12 +41,29 @@ const PortfolioEntry: React.FC<PortfolioEntryProps> = ({ portfolio_entry }) => {
     title: ""
   }
 
-  if( portfolio_entry.type == "experience"){
+
+  if( portfolio_entry.type == "skill"){
+    for(const skill of user.portfolio.skills){
+      if (skill.title == portfolio_entry.id){
+        contents.title = skill.title;
+        contents.level = skill.level;
+      }
+    }
+  }else {
     for(const area of user.portfolio.areas){
       for(const experience of area.entries){
-        if( experience.organization == portfolio_entry.id ){
-          contents.title = experience.organization;
-          contents.description = experience.description;
+        if(portfolio_entry.type == "experience" ){
+          if(experience.organization == portfolio_entry.id){
+            contents.title = experience.organization;
+            contents.description = experience.description;
+          }
+        }else if(portfolio_entry.type == "role"){
+          for(const role of experience.roles){
+            if( role.title == portfolio_entry.id){
+              contents.title = role.title;
+              contents.description = role.description;
+            }
+          }   
         }
       }
     }
