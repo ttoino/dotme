@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Github, Mail, Linkedin, ExternalLink } from "lucide-react";
+import { Github, Mail, Linkedin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -12,24 +12,27 @@ import {
   CardHeader,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+  CardTitle,
+  CardHeader,
+} from "@/components/ui/card";
 import { useEffect, useState } from "react";
 import { Separator } from "@/components/ui/separator";
-import { roles, cvData, experiences, areas } from "@/mock/cv1";
+import { areas } from "@/mock/cv1";
 import { renderRichText } from "@/lib/utils";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import ProfileGrid from "@/components/ui/profile-grid";
 
 export default function Portfolio() {
-  const [viewMode, setViewMode] = useState("chronological"); // chronological | group by area
+  const [viewMode, /* setViewMode */] = useState("chronological"); // chronological | group by area
 
-  const [data, setData] = useState({});
+  // const [data, setData] = useState({});
 
   useEffect(() => {}, [viewMode]);
   return (
     <div className="min-h-screen flex flex-col items-center">
-      <div className="flex items-center">
+      <div className="flex w-1/2">
         <section className="flex flex-col gap-3 items-center p-3">
-          <div className="w-[258px] h-[258px] relative rounded-full overflow-hidden">
+          <div className="w-[190px] h-[190px] relative rounded-full overflow-hidden">
             <Image
               src="/IMG_9846.JPG"
               alt="Profile Picture"
@@ -37,26 +40,16 @@ export default function Portfolio() {
               className="object-cover object-center"
             />
           </div>
-          <h1 className="text-3xl md:text-5xl font-bold tracking-tighter">
-            Ruben Safadinho
-          </h1>
-          <p className="text-xl md:text-2xl text-gray-600">
-            Malandrinho full-time @ Kidzania
-          </p>
         </section>
 
-        <section className="flex flex-col gap-3 items-center p-3">
-          <h2 className="text-2xl md:text-3xl font-bold text-center mb-8">
-            About Me
-          </h2>
-          <div className="max-w-3xl mx-auto text-center">
-            <p className="text-gray-600 mb-6">
-              I'm a passionate Full Stack Developer with 5+ years of experience
-              building web applications. I specialize in React, Next.js,
-              Node.js, and modern web technologies. My goal is to create
-              intuitive, efficient, and beautiful digital experiences.
-            </p>
-          </div>
+        <section className="flex flex-col gap-3 justify-center items-center flex-grow p-3">
+          <h1 className="text-3xl md:text-5xl font-bold tracking-tighter">
+            Ruben Esteves
+          </h1>
+          <p className="text-xl md:text-2xl text-gray-600">
+            Department Manager @ Kidzania
+          </p>
+
           <div className="flex space-x-4">
             <Button variant="outline" size="icon">
               <Github className="h-5 w-5" />
@@ -82,6 +75,7 @@ export default function Portfolio() {
         <Tabs defaultValue="home" className="">
           <TabsList className={`w-full`}>
             <TabsTrigger value="home">Home</TabsTrigger>
+            <TabsTrigger value="about-me">About Me</TabsTrigger>
             {areas.map((area, index) => (
               <TabsTrigger value={area.name} key={`area-${index}`}>
                 {area.name.charAt(0).toUpperCase() + area.name.slice(1)}
@@ -92,13 +86,25 @@ export default function Portfolio() {
             <ProfileGrid/>
           </TabsContent>
           {areas.map((area, index) => (
+          <TabsContent value="about-me">
+            <h2 className="text-2xl md:text-3xl font-bold mb-8">About Me</h2>
+            <div className="max-w-3xl mx-auto">
+              <p className="text-gray-600 mb-6">
+                I&apos;m a passionate Full Stack Developer with 5+ years of
+                experience building web applications. I specialize in React,
+                Next.js, Node.js, and modern web technologies. My goal is to
+                create intuitive, efficient, and beautiful digital experiences.
+              </p>
+            </div>
+          </TabsContent>
+          {areas.map((area) => (
             <TabsContent
               className="my-5"
               value={area.name}
               key={`area-${area.name}`}
             >
               <div className="flex flex-col gap-5">
-                {area.entries.map((entry, index) => (
+                {area.entries.map((entry) => (
                   <Card className="" key={`entry-${entry.organization}`}>
                     <CardHeader>
                       <CardTitle className="text-2xl text-black">
@@ -107,12 +113,9 @@ export default function Portfolio() {
                     </CardHeader>
                     <CardContent>
                       {entry.roles.map((role, index) => (
-                        <>
-                          <div key={`role-${role.title}`}>
-                            <span className="font-bold flex gap-2">
-                              <p>{role.title}</p>
-                              <p className="text-blue-400">@</p>
-                            </span>
+                        <div key={`role-${role.title}`}>
+                          <div>
+                            <p className="font-bold flex gap-2">{role.title}</p>
                             <p className="text-gray-600">
                               {role.startDate} - {role.endDate}
                             </p>
@@ -120,10 +123,10 @@ export default function Portfolio() {
                               {renderRichText(role.description)}
                             </span>
                           </div>
-                          {index < entry.roles.length - 2 && (
+                          {index < entry.roles.length - 1 && (
                             <Separator className="my-4" />
                           )}{" "}
-                        </>
+                        </div>
                       ))}
                     </CardContent>
                   </Card>
@@ -229,17 +232,17 @@ export default function Portfolio() {
   );
 }
 
-const skills = [
-  "JavaScript",
-  "TypeScript",
-  "React",
-  "Next.js",
-  "Node.js",
-  "Express",
-  "MongoDB",
-  "PostgreSQL",
-  "GraphQL",
-  "Tailwind CSS",
-  "Git",
-  "Docker",
-];
+// const skills = [
+//   "JavaScript",
+//   "TypeScript",
+//   "React",
+//   "Next.js",
+//   "Node.js",
+//   "Express",
+//   "MongoDB",
+//   "PostgreSQL",
+//   "GraphQL",
+//   "Tailwind CSS",
+//   "Git",
+//   "Docker",
+// ];
