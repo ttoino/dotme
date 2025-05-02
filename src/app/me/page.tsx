@@ -21,11 +21,6 @@ import ProfileGrid from "@/components/ui/profile-grid";
 
 export default function Portfolio() {
   const [viewMode, setViewMode] = useState("chronological"); // chronological | group by area
-  const [activeTab, setActiveTab] = useState("home");
-
-  const handleTabChange = (value: string) => {
-    setActiveTab(value);
-  };
 
   const [data, setData] = useState({});
 
@@ -84,7 +79,7 @@ export default function Portfolio() {
       </div>
 
       <section className="w-1/2 items-center p-3">
-        <Tabs defaultValue="home" className="" onValueChange={handleTabChange}>
+        <Tabs defaultValue="home" className="">
           <TabsList className={`w-full`}>
             <TabsTrigger value="home">Home</TabsTrigger>
             {areas.map((area, index) => (
@@ -93,10 +88,8 @@ export default function Portfolio() {
               </TabsTrigger>
             ))}
           </TabsList>
-          {/* Home Tab Content */}
           <TabsContent value="home">
-            {/* Render ProfileGrid only in the Home tab */}
-            {activeTab === "home" && <ProfileGrid/>}
+            <ProfileGrid/>
           </TabsContent>
           {areas.map((area, index) => (
             <TabsContent
