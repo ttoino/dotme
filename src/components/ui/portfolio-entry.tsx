@@ -11,8 +11,8 @@ interface PortfolioEntryProps {
 
 const PortfolioEntry: React.FC<PortfolioEntryProps> = ({ experience }) => {
   return (
-    <div >
-      <div className="drag-handle cursor-move font-bold">{experience.organization}</div>
+    <div>
+      <div className="font-bold">{experience.organization}</div>
       {experience.description ? (
         <RichTextRenderer content={experience.description as unknown as RichText} />
       ) : (

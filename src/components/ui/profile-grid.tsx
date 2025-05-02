@@ -31,7 +31,7 @@ const ProfileGrid = () => {
         isDraggable
       >
         {experiences.map(experience => (
-          <div key={experience.organization?.toString()} className="bg-white border rounded shadow p-2">
+          <div key={experience.organization?.toString()} className="bg-white border rounded shadow p-2 drag-handle cursor-move">
             <PortfolioEntry experience={experience} />
           </div>
         ))}
