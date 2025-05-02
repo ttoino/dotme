@@ -51,3 +51,14 @@ export const experiencesTable = singlestoreTable("experiences_table", {
   links: json().$type<Link[]>(),
   ...timestamps,
 });
+
+export const portfolioTable = singlestoreTable("portfolio_table", {
+  id: int({ unsigned: true }).autoincrement().primaryKey(),
+  userId: varchar({ length: 255 }).notNull(), // ligar ao user
+  type: varchar({ length: 255 }).notNull(), // saber o tipe de tabela
+  foreignId: int({ unsigned: true }).notNull(), // ligar a tabela
+  x: int({ unsigned: true }).notNull(),
+  y: int({ unsigned: true }).notNull(),
+  width: int({ unsigned: true }).notNull(),
+  hight: int({ unsigned: true }).notNull(),
+})

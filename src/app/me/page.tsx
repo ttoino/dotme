@@ -12,9 +12,6 @@ import {
   CardHeader,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-  CardTitle,
-  CardHeader,
-} from "@/components/ui/card";
 import { useEffect, useState } from "react";
 import { Separator } from "@/components/ui/separator";
 import { areas } from "@/mock/cv1";
@@ -85,7 +82,6 @@ export default function Portfolio() {
           <TabsContent value="home">
             <ProfileGrid/>
           </TabsContent>
-          {areas.map((area, index) => (
           <TabsContent value="about-me">
             <h2 className="text-2xl md:text-3xl font-bold mb-8">About Me</h2>
             <div className="max-w-3xl mx-auto">
@@ -97,7 +93,7 @@ export default function Portfolio() {
               </p>
             </div>
           </TabsContent>
-          {areas.map((area) => (
+          {areas.map((area, index) => (
             <TabsContent
               className="my-5"
               value={area.name}
