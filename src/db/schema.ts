@@ -1,3 +1,4 @@
+
 import { Image, Link, RichText, role, skill } from "@/types/cv";
 import { area } from "@/types/cv";
 import {
