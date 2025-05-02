@@ -253,4 +253,36 @@ db.insert(cvTable).values({
       links: [],
     },
   ],
+  skills: [
+    {
+      name: "Programming Languages",
+      entries: [
+        {
+          name: "JavaScript",
+          description: "Proficient in JavaScript programming language.",
+        },
+        {
+          name: "Python",
+          description: "Proficient in Python programming language.",
+        },
+        {
+          name: "Java",
+          description: "Proficient in Java programming language.",
+        },
+      ],
+    },
+    {
+      name: "Frameworks",
+      entries: [
+        {
+          name: "React",
+          description: "Proficient in React framework.",
+        },
+        {
+          name: "Node.js",
+          description: "Proficient in Node.js framework.",
+        },
+      ],
+    },
+  ],
 });

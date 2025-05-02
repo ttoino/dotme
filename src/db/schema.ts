@@ -23,7 +23,7 @@ export const usersTable = singlestoreTable("users_table", {
 export const cvTable = singlestoreTable("cv_table", {
   id: int({ unsigned: true }).autoincrement().primaryKey(),
   userId: varchar({ length: 255 }).notNull(),
-  info_name: varchar({ length: 255 }).notNull(),
+  info_name: varchar({ length: 255 }).default("New User").notNull(),
   info_profilePicture: varchar({ length: 255 }),
   info_roles: json().$type<string[]>(),
   info_bio: json().$type<RichText>(),

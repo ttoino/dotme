@@ -2,6 +2,7 @@ import { Blob } from "buffer";
 
 export interface CV {
   info: info;
+  template?: template;
   contacts: contacts;
   areas: area[];
   skills: skill[];
@@ -46,6 +47,13 @@ export interface role {
 export interface skill {
   title: string;
   level?: number; // 1-5
+}
+
+export interface template {
+  type: string;
+  id: string;
+  includeURL?: boolean;
+  includeQR?: boolean;
 }
 
 // ===================================================================================================
