@@ -1,6 +1,6 @@
 import db from ".";
 import { drizzle } from "drizzle-orm/singlestore";
-import { cvTable, usersTable } from "./schema";
+import { cvTable, portfolioTable, usersTable } from "./schema";
 
 db.insert(usersTable).values({
   email: "diogo@dotme.com",
@@ -253,4 +253,14 @@ db.insert(cvTable).values({
       links: [],
     },
   ],
+});
+
+db.insert(portfolioTable).values({
+  userId: "diogo@dotme.com",
+  type: "experience",
+  foreignId: "NIAEFEUP",
+  x:0,
+  y:1,
+  width:4,
+  height:4,
 });
