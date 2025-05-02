@@ -52,6 +52,7 @@ export interface skill {
 export interface portfolio_entry {
   type: string;
   id: number;
+  userId: number;
   foreignId: string;
   x: number;
   y: number;

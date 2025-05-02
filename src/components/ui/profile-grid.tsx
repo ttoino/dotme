@@ -5,7 +5,7 @@ import GridLayout from "react-grid-layout";
 import "react-grid-layout/css/styles.css";
 import "react-resizable/css/styles.css";
 import { experiences } from "@/mock/cv1";
-import { getPortfolioEntries } from "@/lib/portfolio";
+import { getPortfolioEntries, updatePortfolioEntry } from "@/lib/portfolio";
 import { useSession } from "../SessionProvider";
 import { experience, portfolio_entry, role, skill } from "@/types/cv";
 import { getUser } from "@/lib/user";
@@ -63,6 +63,21 @@ const ProfileGrid: React.FC<ProfileGridProps> = ({ user }) => {
     "skill" : "bg-primary border rounded shadow p-2 drag-handle cursor-move",
     "role" : "bg-secondary border rounded shadow p-2 drag-handle cursor-move"
   }
+
+
+  const handleLayoutChange = (newLayout: any[]) => {
+    newLayout.forEach((item) => {
+      const updatedEntry: portfolio_entry = {
+        ...portfolioInfo.find((entry) => entry.foreignId === item.i)!,
+        x: item.x,
+        y: item.y,
+        width: item.w,
+        height: item.h,
+      };
+      
+      updatePortfolioEntry(updatedEntry);
+    });
+  };
   
 
   return (
@@ -75,6 +90,7 @@ const ProfileGrid: React.FC<ProfileGridProps> = ({ user }) => {
         draggableHandle=".drag-handle"
         isResizable
         isDraggable
+        onLayoutChange={handleLayoutChange}
       >
         {portfolioInfo.map(info => {
         // Determine the component to render based on info.type
