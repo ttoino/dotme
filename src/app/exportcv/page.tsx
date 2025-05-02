@@ -23,14 +23,13 @@ import {
 import { download_cv } from "./download";
 
 export default function ExportCV() {
-  const rawParams = useSearchParams();
   const user_data = useMemo(() => {
     try {
-      return JSON.parse(rawParams.get("user_data")!) || {};
+      return JSON.parse(sessionStorage.getItem("user_data")!);
     } catch {
       return {};
     }
-  }, [rawParams]);
+  }, []);
   const roles_data = getRolesFormattedData(user_data);
   const [cvData, setCvData] = useState<CV>(user_data);
   const [includeURL, setIncludeURL] = useState(false);
@@ -122,7 +121,7 @@ export default function ExportCV() {
           <Button
             variant="outline"
             className="w-full mr-2"
-            onClick={() => download_cv(cvData)}
+            onClick={async () => await download_cv(cvData)}
           >
             Download CV
           </Button>

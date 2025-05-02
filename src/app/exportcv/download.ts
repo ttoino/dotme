@@ -1,6 +1,8 @@
 "use server";
 
 export async function download_cv(cvData: any) {
+  console.log("Downloading CV with data:", cvData);
+
   fetch("http://localhost:5050/generate_pdf", {
     method: "POST",
     headers: {
@@ -11,10 +13,13 @@ export async function download_cv(cvData: any) {
     }),
   })
     .then((res) => {
+      console.log("Response from server:", res);
+
       if (!res.ok) throw new Error("Failed to fetch PDF");
       return res.blob();
     })
     .then((blob) => {
+      console.log("Blob received:", blob);
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
@@ -25,6 +30,7 @@ export async function download_cv(cvData: any) {
       window.URL.revokeObjectURL(url);
     })
     .catch((err) => {
+      console.error("Error fetching PDF:", err);
       console.error("Error fetching PDF:", err);
     });
 }

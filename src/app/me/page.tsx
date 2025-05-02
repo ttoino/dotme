@@ -19,7 +19,11 @@ export default function Portfolio({ id }: { id: string }) {
   const session = use(sessionPromise);
   const userPromisse = id ? getUser(id) : sessionPromise;
   const user_data = use(userPromisse);
-
+  useEffect(() => {
+    if (window) {
+      sessionStorage.setItem("user_data", JSON.stringify(user_data));
+    }
+  }, []);
   return (
     <div className="min-h-screen flex flex-col items-center">
       <div className="flex w-1/2">
@@ -57,14 +61,7 @@ export default function Portfolio({ id }: { id: string }) {
             </Button>
             {!id && (
               <Button variant="outline">
-                <Link
-                  href={{
-                    pathname: "/exportcv",
-                    query: { user_data: JSON.stringify(user_data) },
-                  }}
-                >
-                  Export CV
-                </Link>{" "}
+                <Link href="/exportcv">Export CV</Link>{" "}
               </Button>
             )}
           </div>
