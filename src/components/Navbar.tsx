@@ -22,23 +22,23 @@ export default function Navbar() {
         {/* Nav Links */}
         <div className="hidden md:flex gap-6 items-center text-sm font-medium text-muted-foreground">
           <Link
-            href="/feed"
+            href="/"
             className="hover:text-foreground transition-colors"
           >
             Feed
           </Link>
           <Link
-            href="/projects"
+            href="/market"
             className="hover:text-foreground transition-colors"
           >
-            Projects
+            Market
           </Link>
-          <Link
+          {/* <Link
             href="/contact"
             className="hover:text-foreground transition-colors"
           >
             Contact
-          </Link>
+          </Link> */}
         </div>
 
         {/* Right Section: Icons and Avatar */}
