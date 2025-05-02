@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import GridLayout, { Layout } from "react-grid-layout";
+import React from "react";
+import GridLayout from "react-grid-layout";
 import "react-grid-layout/css/styles.css";
 import "react-resizable/css/styles.css";
-import { roles, cvData, experiences, areas } from "@/mock/cv1";
+import { experiences } from "@/mock/cv1";
 import PortfolioEntry from "./portfolio-entry";
 
 
@@ -17,8 +17,6 @@ const experienceItems = experiences.flatMap((experience, areaIndex) =>({
 
 
 const ProfileGrid = () => {
-
-
 
   return (
     <div className="p-4">
