@@ -9,6 +9,7 @@ import PortfolioEntry from "./portfolio-entry";
 import { getPortfolioEntries } from "@/lib/portfolio";
 import { useSession } from "../SessionProvider";
 import { portfolio_entry } from "@/types/cv";
+import { User } from "@/types/user";
 
 
 const experienceItems = experiences.flatMap((experience, areaIndex) => ({
@@ -18,8 +19,6 @@ const experienceItems = experiences.flatMap((experience, areaIndex) => ({
   w: experience.w, // Width of the grid item
   h: experience.h, // Height of the grid item
 }));
-
-
 
 const ProfileGrid = () => {
 
@@ -34,6 +33,14 @@ const ProfileGrid = () => {
     });
     console.log(portfolioInfo)
   }, [sessionPromise]);
+
+  if(portfolioInfo === null){
+    return (
+      <div>Loading...</div>
+    )
+  }
+
+  
   
 
   return (

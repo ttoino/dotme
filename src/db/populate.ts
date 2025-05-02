@@ -8,14 +8,14 @@ db.insert(usersTable).values({
 
 db.insert(cvTable).values({
   userId: "diogo@dotme.com",
-  info_name: "Diogo Fernandes",
-  info_profilePicture: "/diogo.png",
-  info_roles: [
+  infoName: "Diogo Fernandes",
+  infoProfilePicture: "/diogo.png",
+  infoRoles: [
     "Vice-president @ NIAEFEUP",
     "Head of Program @ ENEI",
     "MSc in Computer Engineering @ FEUP",
   ],
-  info_bio: [
+  infoBio: [
     {
       type: "paragraph",
       children: [
@@ -43,10 +43,10 @@ db.insert(cvTable).values({
       children: [{ type: "text", text: "." }],
     },
   ],
-  contacts_email: "diogotvf7@gmail.com",
-  contacts_phone: "965358804",
-  contacts_github: "github.com/diogotvf7",
-  contacts_linkedin: "linkedin.com/in/diogotv-fernandes",
+  contactsEmail: "diogotvf7@gmail.com",
+  contactsPhone: "965358804",
+  contactsGithub: "github.com/diogotvf7",
+  contactsLinkedin: "linkedin.com/in/diogotv-fernandes",
   areas: [
     {
       name: "Academic Experience",
@@ -253,6 +253,12 @@ db.insert(cvTable).values({
       links: [],
     },
   ],
+  skills: [
+    {
+      title: "Chefe",
+      level: 4
+    }
+  ]
 });
 
 db.insert(portfolioTable).values({
@@ -263,4 +269,6 @@ db.insert(portfolioTable).values({
   y:1,
   width:4,
   height:4,
-});
+})
+
+

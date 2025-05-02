@@ -36,25 +36,6 @@ export const cvTable = singlestoreTable("cv_table", {
   ...timestamps,
 });
 
-// export const areasTable = singlestoreTable("areas_table", {
-//   id: int({ unsigned: true }).autoincrement().primaryKey(),
-//   cvId: bigint({ unsigned: true, mode: "bigint" }).notNull(),
-//   name: varchar({ length: 255 }).notNull(),
-//   links: json().$type<Link[]>(),
-//   ...timestamps,
-// });
-
-// export const experiencesTable = singlestoreTable("experiences_table", {
-//   id: int({ unsigned: true }).autoincrement().primaryKey(),
-//   areaId: bigint({ unsigned: true, mode: "bigint" }).notNull(),
-//   organization: varchar({ length: 255 }),
-//   description: json().$type<RichText>(),
-//   location: varchar({ length: 255 }),
-//   roles: json().$type<role[]>(),
-//   links: json().$type<Link[]>(),
-//   ...timestamps,
-// });
-
 export const portfolioTable = singlestoreTable("portfolio_table", {
   id: int({ unsigned: true }).autoincrement().primaryKey(),
   userId: varchar({ length: 255 }).notNull(), // ligar ao user

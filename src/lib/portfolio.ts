@@ -25,5 +25,7 @@ export const getPortfolioEntries = async (email: string): Promise<portfolio_entr
         h: value.height,
       }));
 
+    console.log(portfolio_info)
+
     return portfolio_info
 }
