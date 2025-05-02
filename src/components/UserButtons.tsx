@@ -30,7 +30,7 @@ function LoggedInButtons({user}: { user: User }) {
           >
             <Link href="/me">
               <Avatar>
-                <AvatarImage src={image?.url} alt={name} />
+                <AvatarImage src={image} alt={name} />
                 <AvatarFallback>{name[0]}</AvatarFallback>
               </Avatar>
             </Link>
