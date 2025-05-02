@@ -10,7 +10,7 @@ type SessionContextType = {
 const SessionContext = createContext<SessionContextType | null>(null);
  
 export function useSession(): SessionContextType {
-  let context = useContext(SessionContext);
+  const context = useContext(SessionContext);
   if (context === null) {
     throw new Error('useSession must be used within a SessionProvider');
   }

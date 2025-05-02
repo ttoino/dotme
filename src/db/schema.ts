@@ -1,4 +1,4 @@
-import { CV, Image, Link, RichText, role, skill } from "@/types/cv";
+import { Image, Link, RichText, role, skill } from "@/types/cv";
 import {
   int,
   json,

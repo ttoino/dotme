@@ -16,7 +16,7 @@ export default async function handler(
   try {
     const qr = await QRCode.toDataURL(profileUrl);
     res.status(200).json({ qrCode: qr });
-  } catch (err) {
+  } catch {
     res.status(500).json({ error: "Failed to generate QR code" });
   }
 }

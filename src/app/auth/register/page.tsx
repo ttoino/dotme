@@ -2,7 +2,7 @@ import { register } from "@/lib/auth";
 import { redirect } from "next/navigation";
 
 export default function Register() {
-    const action = async (formData: FormData) => {
+    const action = async () => {
         "use server"
 
         const name = "Test User";

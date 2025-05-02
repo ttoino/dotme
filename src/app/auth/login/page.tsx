@@ -1,8 +1,8 @@
-import { login, register } from "@/lib/auth";
+import { login } from "@/lib/auth";
 import { redirect } from "next/navigation";
 
 export default function Register() {
-    const action = async (formData: FormData) => {
+    const action = async () => {
         "use server"
 
         const email = "email@test.com";

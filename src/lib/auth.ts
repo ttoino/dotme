@@ -14,7 +14,9 @@ export const getSession = async (): Promise<User | null> => {
     return await getUser(email);
 }
 
-export const login = async (email: string, _password: string): Promise<User | null> => {
+export const login = async (email: string, password: string): Promise<User | null> => {
+    console.log("login", email, password);
+
     const user = await getUser(email);
 
     if (!user) {
@@ -26,7 +28,9 @@ export const login = async (email: string, _password: string): Promise<User | nu
     return user;
 }
 
-export const register = async (name: string, email: string, _password: string): Promise<User | null> => {
+export const register = async (name: string, email: string, password: string): Promise<User | null> => {
+    console.log("register", name, email, password);
+
     const user = await getUser(email);
 
     if (user) {

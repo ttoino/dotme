@@ -1,27 +1,24 @@
 "use client";
 
 import Image from "next/image";
-import { Github, Mail, Linkedin, ExternalLink } from "lucide-react";
+import { Github, Mail, Linkedin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
-  CardDescription,
-  CardFooter,
   CardTitle,
   CardHeader,
 } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { useEffect, useState } from "react";
 import { Separator } from "@/components/ui/separator";
-import { roles, cvData, experiences, areas } from "@/mock/cv1";
+import { areas } from "@/mock/cv1";
 import { renderRichText } from "@/lib/utils";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 
 export default function Portfolio() {
-  const [viewMode, setViewMode] = useState("chronological"); // chronological | group by area
+  const [viewMode, /* setViewMode */] = useState("chronological"); // chronological | group by area
 
-  const [data, setData] = useState({});
+  // const [data, setData] = useState({});
 
   useEffect(() => {}, [viewMode]);
   return (
@@ -81,21 +78,21 @@ export default function Portfolio() {
             <h2 className="text-2xl md:text-3xl font-bold mb-8">About Me</h2>
             <div className="max-w-3xl mx-auto">
               <p className="text-gray-600 mb-6">
-                I'm a passionate Full Stack Developer with 5+ years of
+                I&apos;m a passionate Full Stack Developer with 5+ years of
                 experience building web applications. I specialize in React,
                 Next.js, Node.js, and modern web technologies. My goal is to
                 create intuitive, efficient, and beautiful digital experiences.
               </p>
             </div>
           </TabsContent>
-          {areas.map((area, index) => (
+          {areas.map((area) => (
             <TabsContent
               className="my-5"
               value={area.name}
               key={`area-${area.name}`}
             >
               <div className="flex flex-col gap-5">
-                {area.entries.map((entry, index) => (
+                {area.entries.map((entry) => (
                   <Card className="" key={`entry-${entry.organization}`}>
                     <CardHeader>
                       <CardTitle className="text-2xl text-black">
@@ -223,17 +220,17 @@ export default function Portfolio() {
   );
 }
 
-const skills = [
-  "JavaScript",
-  "TypeScript",
-  "React",
-  "Next.js",
-  "Node.js",
-  "Express",
-  "MongoDB",
-  "PostgreSQL",
-  "GraphQL",
-  "Tailwind CSS",
-  "Git",
-  "Docker",
-];
+// const skills = [
+//   "JavaScript",
+//   "TypeScript",
+//   "React",
+//   "Next.js",
+//   "Node.js",
+//   "Express",
+//   "MongoDB",
+//   "PostgreSQL",
+//   "GraphQL",
+//   "Tailwind CSS",
+//   "Git",
+//   "Docker",
+// ];
