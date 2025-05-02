@@ -5,7 +5,7 @@ export default function Register() {
     const action = async () => {
         "use server"
 
-        const email = "email@test.com";
+        const email = "diogo@dotme.com";
         const password = "password";
 
         await login(email, password);

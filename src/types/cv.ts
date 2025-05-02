@@ -3,6 +3,7 @@ export interface CV {
   contacts: contacts;
   areas: area[];
   skills: skill[];
+  portfolio: portfolio_entry[];
 }
 
 export interface info {
@@ -48,6 +49,15 @@ export interface role {
 export interface skill {
   title: string;
   level?: number; // 1-5
+}
+
+export interface portfolio_entry {
+  type: string;
+  id: string;
+  x: number;
+  y: number;
+  w: number;
+  h: number;
 }
 
 // ===================================================================================================

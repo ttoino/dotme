@@ -1,12 +1,17 @@
-import React from "react";
+"use client"
+
+import React, { use, useEffect, useState } from "react";
 import GridLayout from "react-grid-layout";
 import "react-grid-layout/css/styles.css";
 import "react-resizable/css/styles.css";
 import { experiences } from "@/mock/cv1";
 import PortfolioEntry from "./portfolio-entry";
+import { getPortfolioEntries } from "@/lib/portfolio";
+import { useSession } from "../SessionProvider";
+import { portfolio_entry } from "@/types/cv";
 
 
-const experienceItems = experiences.flatMap((experience, areaIndex) =>({
+const experienceItems = experiences.flatMap((experience, areaIndex) => ({
   i: experience.organization, // Unique identifier for each item
   x: experience.x, // Adjust the x position based on your layout preferences
   y: experience.y, // Adjust the y position based on the areaIndex or any logic you prefer
@@ -17,6 +22,19 @@ const experienceItems = experiences.flatMap((experience, areaIndex) =>({
 
 
 const ProfileGrid = () => {
+
+  const { sessionPromise } = useSession()
+  const [portfolioInfo, setPortfolioInfo] = useState<portfolio_entry[] | null>(null);
+
+  useEffect(() => {
+    sessionPromise.then(session => {
+      if (session?.email) {
+        getPortfolioEntries(session.email).then(setPortfolioInfo);
+      }
+    });
+    console.log(portfolioInfo)
+  }, [sessionPromise]);
+  
 
   return (
     <div className="p-4">

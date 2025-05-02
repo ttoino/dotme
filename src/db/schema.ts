@@ -1,6 +1,7 @@
 import { Image, Link, RichText, role, skill } from "@/types/cv";
 import {
   int,
+  bigint,
   json,
   singlestoreTable,
   timestamp,
@@ -22,7 +23,7 @@ export const cvTable = singlestoreTable("cv_table", {
   id: int({ unsigned: true }).autoincrement().primaryKey(),
   userId: varchar({ length: 255 }).notNull(),
   info_name: varchar({ length: 255 }).notNull(),
-  info_profilePicture: json().$type<Image>(),
+  info_profilePicture: varchar({ length: 255 }),
   info_roles: json().$type<string[]>(),
   info_bio: json().$type<RichText>(),
   contacts_email: varchar({ length: 255 }),
@@ -35,7 +36,7 @@ export const cvTable = singlestoreTable("cv_table", {
 
 export const areasTable = singlestoreTable("areas_table", {
   id: int({ unsigned: true }).autoincrement().primaryKey(),
-  cvId: int({ unsigned: true }).notNull(),
+  cvId: bigint({ unsigned: true, mode: "bigint" }).notNull(),
   name: varchar({ length: 255 }).notNull(),
   links: json().$type<Link[]>(),
   ...timestamps,
@@ -43,7 +44,7 @@ export const areasTable = singlestoreTable("areas_table", {
 
 export const experiencesTable = singlestoreTable("experiences_table", {
   id: int({ unsigned: true }).autoincrement().primaryKey(),
-  areaId: int({ unsigned: true }).notNull(),
+  areaId: bigint({ unsigned: true, mode: "bigint" }).notNull(),
   organization: varchar({ length: 255 }),
   description: json().$type<RichText>(),
   location: varchar({ length: 255 }),
@@ -56,9 +57,9 @@ export const portfolioTable = singlestoreTable("portfolio_table", {
   id: int({ unsigned: true }).autoincrement().primaryKey(),
   userId: varchar({ length: 255 }).notNull(), // ligar ao user
   type: varchar({ length: 255 }).notNull(), // saber o tipe de tabela
-  foreignId: int({ unsigned: true }).notNull(), // ligar a tabela
+  foreignId: varchar({ length: 255 }).notNull(), // ligar a tabela
   x: int({ unsigned: true }).notNull(),
   y: int({ unsigned: true }).notNull(),
   width: int({ unsigned: true }).notNull(),
-  hight: int({ unsigned: true }).notNull(),
+  height: int({ unsigned: true }).notNull(),
 })
