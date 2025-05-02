@@ -3,7 +3,14 @@
 import Image from "next/image";
 import { Github, Mail, Linkedin, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardTitle,
+  CardHeader,
+} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useEffect, useState } from "react";
 import { Separator } from "@/components/ui/separator";
@@ -16,80 +23,112 @@ export default function Portfolio() {
 
   const [data, setData] = useState({});
 
-  console.log(areas.length + 1);
-
   useEffect(() => {}, [viewMode]);
   return (
-    <main className="min-h-screen bg-white">
-      <section className="flex flex-col gap-3 items-center p-3">
-        <div className="w-[258px] h-[258px] relative rounded-full overflow-hidden">
-          <Image
-            src="/IMG_9846.JPG"
-            alt="Profile Picture"
-            fill
-            className="object-cover object-center"
-          />
-        </div>
-        <h1 className="text-3xl md:text-5xl font-bold tracking-tighter">
-          Ruben Safadinho
-        </h1>
-        <p className="text-xl md:text-2xl text-gray-600">
-          Maladndrinho full-time @ Kidzania
-        </p>
-        <div className="flex space-x-4">
-          <Button variant="outline" size="icon">
-            <Github className="h-5 w-5" />
-            <span className="sr-only">GitHub</span>
-          </Button>
-          <Button variant="outline" size="icon">
-            <Linkedin className="h-5 w-5" />
-            <span className="sr-only">LinkedIn</span>
-          </Button>
-          <Button variant="outline" size="icon">
-            <Mail className="h-5 w-5" />
-            <span className="sr-only">Email</span>
-          </Button>
-        </div>
-      </section>
+    <div className="min-h-screen flex flex-col items-center">
+      <div className="flex w-1/2">
+        <section className="flex flex-col gap-3 items-center p-3">
+          <div className="w-[190px] h-[190px] relative rounded-full overflow-hidden">
+            <Image
+              src="/IMG_9846.JPG"
+              alt="Profile Picture"
+              fill
+              className="object-cover object-center"
+            />
+          </div>
+        </section>
 
-      <div className="p-5">
-        <Separator className="" />
-      </div>
-
-      <section className="flex flex-col gap-3 items-center p-3">
-        <h2 className="text-2xl md:text-3xl font-bold text-center mb-8">
-          About Me
-        </h2>
-        <div className="max-w-3xl mx-auto text-center">
-          <p className="text-gray-600 mb-6">
-            I'm a passionate Full Stack Developer with 5+ years of experience
-            building web applications. I specialize in React, Next.js, Node.js,
-            and modern web technologies. My goal is to create intuitive,
-            efficient, and beautiful digital experiences.
+        <section className="flex flex-col gap-3 justify-center items-center flex-grow p-3">
+          <h1 className="text-3xl md:text-5xl font-bold tracking-tighter">
+            Ruben Esteves
+          </h1>
+          <p className="text-xl md:text-2xl text-gray-600">
+            Department Manager @ Kidzania
           </p>
-          <Button>Download Resume</Button>
-        </div>
-      </section>
+
+          <div className="flex space-x-4">
+            <Button variant="outline" size="icon">
+              <Github className="h-5 w-5" />
+              <span className="sr-only">GitHub</span>
+            </Button>
+            <Button variant="outline" size="icon">
+              <Linkedin className="h-5 w-5" />
+              <span className="sr-only">LinkedIn</span>
+            </Button>
+            <Button variant="outline" size="icon">
+              <Mail className="h-5 w-5" />
+              <span className="sr-only">Email</span>
+            </Button>
+          </div>
+        </section>
+      </div>
 
       <div className="p-5">
         <Separator className="" />
       </div>
 
-      <Tabs defaultValue="home" className="w-50% flex justify-center">
-        <TabsList className={`grid w-full grid-cols-${areas.length + 1}`}>
-          <TabsTrigger value="home">Home</TabsTrigger>
+      <section className="w-1/2 items-center p-3">
+        <Tabs defaultValue="home" className="">
+          <TabsList className={`w-full`}>
+            <TabsTrigger value="about-me">About Me</TabsTrigger>
+            {areas.map((area, index) => (
+              <TabsTrigger value={area.name} key={`area-${index}`}>
+                {area.name.charAt(0).toUpperCase() + area.name.slice(1)}
+              </TabsTrigger>
+            ))}
+          </TabsList>
+          <TabsContent value="about-me">
+            <h2 className="text-2xl md:text-3xl font-bold mb-8">About Me</h2>
+            <div className="max-w-3xl mx-auto">
+              <p className="text-gray-600 mb-6">
+                I'm a passionate Full Stack Developer with 5+ years of
+                experience building web applications. I specialize in React,
+                Next.js, Node.js, and modern web technologies. My goal is to
+                create intuitive, efficient, and beautiful digital experiences.
+              </p>
+            </div>
+          </TabsContent>
           {areas.map((area, index) => (
-            <TabsTrigger value={area.name} key={`area-${index}`}>
-              {area.name.charAt(0).toUpperCase() + area.name.slice(1)}
-            </TabsTrigger>
+            <TabsContent
+              className="my-5"
+              value={area.name}
+              key={`area-${area.name}`}
+            >
+              <div className="flex flex-col gap-5">
+                {area.entries.map((entry, index) => (
+                  <Card className="" key={`entry-${entry.organization}`}>
+                    <CardHeader>
+                      <CardTitle className="text-2xl text-black">
+                        {entry.organization}
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      {entry.roles.map((role, index) => (
+                        <div key={`role-${role.title}`}>
+                          <div>
+                            <p className="font-bold flex gap-2">{role.title}</p>
+                            <p className="text-gray-600">
+                              {role.startDate} - {role.endDate}
+                            </p>
+                            <span className="text-gray-600">
+                              {renderRichText(role.description)}
+                            </span>
+                          </div>
+                          {index < entry.roles.length - 1 && (
+                            <Separator className="my-4" />
+                          )}{" "}
+                        </div>
+                      ))}
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </TabsContent>
           ))}
-        </TabsList>
-        {areas.map((area, index) => (
-          <TabsContent value={area.name}></TabsContent>
-        ))}
-      </Tabs>
+        </Tabs>
+      </section>
 
-      <section className="w-50% flex justify-center">
+      {/* <section className="w-50% flex justify-center">
         <div className="flex flex-col gap-5 p-3">
           {roles.map((role, index) => (
             <div key={index}>
@@ -97,7 +136,6 @@ export default function Portfolio() {
                 <span className="font-bold flex gap-2">
                   <p>{role.title}</p>
                   <p className="text-blue-400">@</p>
-                  <p>{role.organization}</p>
                 </span>
                 <p className="text-gray-600">
                   {role.startDate} - {role.endDate}
@@ -110,7 +148,7 @@ export default function Portfolio() {
             </div>
           ))}
         </div>
-      </section>
+      </section> */}
 
       {/* Projects Section */}
       {/* <section className="py-12 md:py-24 bg-gray-50">
@@ -181,7 +219,7 @@ export default function Portfolio() {
           </div>
         </div>
       </section> */}
-    </main>
+    </div>
   );
 }
 

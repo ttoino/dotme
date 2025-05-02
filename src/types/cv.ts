@@ -36,7 +36,6 @@ export interface experience {
 
 export interface role {
   title: string;
-  organization?: string;
   startDate: string;
   endDate: string;
   description: RichText;
