@@ -25,6 +25,8 @@ export default function Portfolio({ id }: { id: string }) {
   console.log(user_data);
 
   useEffect(() => {}, [viewMode]);
+
+
   return (
     <div className="min-h-screen flex flex-col items-center">
       <div className="flex w-1/2">
@@ -80,7 +82,7 @@ export default function Portfolio({ id }: { id: string }) {
             ))}
           </TabsList>
           <TabsContent value="home">
-            <ProfileGrid/>
+            <ProfileGrid user={user_data!}/>
           </TabsContent>
           <TabsContent value="about-me">
             {user_data?.portfolio.info.bio && (

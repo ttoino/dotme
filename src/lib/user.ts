@@ -1,7 +1,7 @@
 "use server";
 
 import db from "@/db";
-import { cvTable, usersTable } from "@/db/schema";
+import { cvTable, portfolioTable, usersTable } from "@/db/schema";
 import { User } from "@/types/user";
 import { eq } from "drizzle-orm";
 
@@ -27,6 +27,25 @@ export const getUser = async (email: string): Promise<User | null> => {
   }
 
   const portfolio = portfolios[0];
+
+  const portfolio_entries = await db
+        .select()
+        .from(portfolioTable)
+        .where(eq(portfolioTable.userId, email))
+
+    // if(portfolio_entries.length < 0) {
+    //     console.log("No portfolio entries")
+    //     return null
+    // }
+
+    const portfolio_info: portfolio_entry[] = portfolio_entries.map((value) => ({
+        type: value.type,
+        id: value.foreignId.toString(),
+        x: value.x,
+        y: value.y,
+        w: value.width,
+        h: value.height,
+      }));
 
   // const areas = await db
   //   .select()
@@ -66,6 +85,7 @@ export const getUser = async (email: string): Promise<User | null> => {
       areas: portfolio.areas ?? [],
       skills: portfolio.skills ?? [],
     },
+    portfolio_entries: portfolio_entries ?? [],
   };
   // areas: areas.map((area) => ({
   //         name: area.name,

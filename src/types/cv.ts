@@ -34,10 +34,6 @@ export interface experience {
   location?: string;
   roles: role[];
   links?: Link[];
-  x?: number;
-  y?: number;
-  w?: number;
-  h?: number;
 }
 
 export interface role {
@@ -55,11 +51,12 @@ export interface skill {
 
 export interface portfolio_entry {
   type: string;
-  id: string;
+  id: number;
+  foreignId: string;
   x: number;
   y: number;
-  w: number;
-  h: number;
+  width: number;
+  height: number;
 }
 
 // ===================================================================================================
