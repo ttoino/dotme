@@ -1,22 +1,20 @@
-import type { NextApiRequest, NextApiResponse } from "next";
 import QRCode from "qrcode";
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
+export async function GET(
+  req: Request,
 ) {
-  const { username } = req.query;
+  const username = new URL(req.url).searchParams.get("username");
 
   if (typeof username !== "string") {
-    return res.status(400).json({ error: "Invalid username" });
+    return Response.json({ error: "Invalid username" }, { status: 400 });
   }
 
   const profileUrl = `https://yourdomain.com/profile/${username}`;
 
   try {
     const qr = await QRCode.toDataURL(profileUrl);
-    res.status(200).json({ qrCode: qr });
+    Response.json({ qrCode: qr });
   } catch {
-    res.status(500).json({ error: "Failed to generate QR code" });
+    Response.json({ error: "Failed to generate QR code" }, { status: 500 });
   }
 }
