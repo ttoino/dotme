@@ -218,7 +218,7 @@ const ni_tts: cv.role = {
 };
 
 const ni_member: cv.role = {
-  title: "Member SINF Program Department",
+  title: "Member of the SINF Program Department",
   startDate: "Jun 2022",
   endDate: "Present",
   description: [

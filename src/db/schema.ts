@@ -22,7 +22,7 @@ export const cvTable = singlestoreTable("cv_table", {
   id: int({ unsigned: true }).autoincrement().primaryKey(),
   userId: varchar({ length: 255 }).notNull(),
   info_name: varchar({ length: 255 }).notNull(),
-  info_profilePicture: json().$type<Image>(),
+  info_profilePicture: varchar({ length: 255 }),
   info_roles: json().$type<string[]>(),
   info_bio: json().$type<RichText>(),
   contacts_email: varchar({ length: 255 }),
@@ -48,6 +48,16 @@ export const experiencesTable = singlestoreTable("experiences_table", {
   description: json().$type<RichText>(),
   location: varchar({ length: 255 }),
   roles: json().$type<role[]>(),
+  links: json().$type<Link[]>(),
+  ...timestamps,
+});
+
+export const rolesTable = singlestoreTable("roles_table", {
+  id: int({ unsigned: true }).autoincrement().primaryKey(),
+  title: varchar({ length: 255 }).notNull(),
+  startDate: varchar({ length: 255 }).notNull(),
+  endDate: varchar({ length: 255 }),
+  description: json().$type<RichText>(),
   links: json().$type<Link[]>(),
   ...timestamps,
 });

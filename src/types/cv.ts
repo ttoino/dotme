@@ -1,3 +1,5 @@
+import { Blob } from "buffer";
+
 export interface CV {
   info: info;
   contacts: contacts;
@@ -7,7 +9,7 @@ export interface CV {
 
 export interface info {
   name: string;
-  profile_picture?: Image;
+  profile_picture?: string;
   roles: string[];
   bio?: RichText;
 }
