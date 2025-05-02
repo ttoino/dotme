@@ -3,12 +3,12 @@
 import Link from "next/link";
 import Image from "next/image";
 import UserButtons from "./UserButtons";
+import ThemeToggle from "./ThemeToggle";
 
 export default function Navbar() {
   return (
     <nav className="w-full px-4 py-3 border-b bg-background">
       <div className="container mx-auto flex items-center justify-between">
-        {/* Logo */}
         <Link href="/" className="text-xl font-bold tracking-tight">
           <Image
             src="/logo.svg"
@@ -19,7 +19,6 @@ export default function Navbar() {
           />
         </Link>
 
-        {/* Nav Links */}
         <div className="hidden md:flex gap-6 items-center text-sm font-medium text-muted-foreground">
           <Link
             href="/feed"
@@ -41,8 +40,11 @@ export default function Navbar() {
           </Link>
         </div>
 
-        {/* Right Section: Icons and Avatar */}
-        <UserButtons />
+        {/* Right Section: Theme Toggle and User Buttons */}
+        <div className="flex items-center gap-2">
+          <ThemeToggle />
+          <UserButtons />
+        </div>
       </div>
     </nav>
   );

@@ -36,10 +36,10 @@ export default function Portfolio() {
         </section>
 
         <section className="flex flex-col gap-3 justify-center items-center flex-grow p-3">
-          <h1 className="text-3xl md:text-5xl font-bold tracking-tighter">
+          <h1 className="text-3xl md:text-5xl font-bold tracking-tighter fg-foreground">
             Ruben Esteves
           </h1>
-          <p className="text-xl md:text-2xl text-gray-600">
+          <p className="text-xl md:text-2xl text-foreground">
             Department Manager @ Kidzania
           </p>
 
@@ -77,7 +77,7 @@ export default function Portfolio() {
           <TabsContent value="about-me">
             <h2 className="text-2xl md:text-3xl font-bold mb-8">About Me</h2>
             <div className="max-w-3xl mx-auto">
-              <p className="text-gray-600 mb-6">
+              <p className="text-foreground mb-6">
                 I&apos;m a passionate Full Stack Developer with 5+ years of
                 experience building web applications. I specialize in React,
                 Next.js, Node.js, and modern web technologies. My goal is to
@@ -95,7 +95,7 @@ export default function Portfolio() {
                 {area.entries.map((entry) => (
                   <Card className="" key={`entry-${entry.organization}`}>
                     <CardHeader>
-                      <CardTitle className="text-2xl text-black">
+                      <CardTitle className="text-2xl text-foreground foreground">
                         {entry.organization}
                       </CardTitle>
                     </CardHeader>
@@ -104,10 +104,10 @@ export default function Portfolio() {
                         <div key={`role-${role.title}`}>
                           <div>
                             <p className="font-bold flex gap-2">{role.title}</p>
-                            <p className="text-gray-600">
+                            <p className="text-foreground">
                               {role.startDate} - {role.endDate}
                             </p>
-                            <span className="text-gray-600">
+                            <span className="text-foreground">
                               {renderRichText(role.description)}
                             </span>
                           </div>
