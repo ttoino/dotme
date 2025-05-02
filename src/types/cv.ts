@@ -22,7 +22,7 @@ export interface contacts {
 
 export interface area {
   name: string;
-  entries: experience[];
+  entries?: experience[];
   links?: Link[];
 }
 

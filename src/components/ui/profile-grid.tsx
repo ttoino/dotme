@@ -40,7 +40,7 @@ const ProfileGrid = () => {
     <div className="p-4">
       <GridLayout
         className="layout"
-        layout={experienceItems}
+        layout={portfolioInfo}
         cols={4}
         rowHeight={250}
         width={1000}
@@ -48,9 +48,9 @@ const ProfileGrid = () => {
         isResizable
         isDraggable
       >
-        {experiences.map(experience => (
-          <div key={experience.organization?.toString()} className="bg-white border rounded shadow p-2 drag-handle cursor-move">
-            <PortfolioEntry experience={experience} />
+        {portfolioInfo.map(info => (
+          <div key={info.id?.toString()} className="bg-white border rounded shadow p-2 drag-handle cursor-move">
+            <PortfolioEntry portfolio_entry={info} />
           </div>
         ))}
       </GridLayout>
