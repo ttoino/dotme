@@ -15,6 +15,7 @@ export const categoryLabels: Record<Category, string> = {
 };
 
 export interface Template {
+    id: number;
     name: string;
     description: RichText;
     image: string;

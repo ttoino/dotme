@@ -22,7 +22,7 @@ export const usersTable = singlestoreTable("users_table", {
 });
 
 export const cvTable = singlestoreTable("cv_table", {
-  id: bigint({ unsigned: true, mode: "bigint" }).autoincrement().primaryKey(),
+  id: bigint({ unsigned: true, mode: "number" }).autoincrement().primaryKey(),
   userId: varchar({ length: 255 }).notNull(),
   info_name: varchar({ length: 255 }).notNull(),
   info_profilePicture: varchar({ length: 255 }),
@@ -66,10 +66,10 @@ export const rolesTable = singlestoreTable("roles_table", {
 });
 
 export const templatesTable = singlestoreTable("templates_table", {
-  id: bigint({ unsigned: true, mode: "bigint" }).autoincrement().primaryKey(),
+  id: bigint({ unsigned: true, mode: "number" }).autoincrement().primaryKey(),
   userId: varchar({ length: 255 }).notNull(),
   name: varchar({ length: 255 }).notNull(),
-  description: json().$type<RichText>(),
+  description: json().$type<RichText>().notNull(),
   image: varchar({ length: 255 }).notNull(),
   category: varchar({ length: 255 }).$type<Category>().notNull(),
   price: int({ unsigned: true }).notNull(),
@@ -77,7 +77,7 @@ export const templatesTable = singlestoreTable("templates_table", {
 
 export const templateUserRelation = singlestoreTable("template_user_relation", {
   userId: varchar({ length: 255 }),
-  templateId: bigint({ unsigned: true, mode: "bigint" }),
+  templateId: bigint({ unsigned: true, mode: "number" }),
 },  (table) => [
   primaryKey({columns: [table.userId, table.templateId]}),
 ]);
