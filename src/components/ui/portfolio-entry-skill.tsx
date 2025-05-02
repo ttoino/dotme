@@ -15,7 +15,7 @@ const PortfolioEntrySkill: React.FC<PortfolioEntrySkillProps> = ({ skill }) => {
         return <div>Loading skill...</div>;
     }
 
-    const stars = '⭐'.repeat(skill.level);
+    const stars = '⭐'.repeat(skill.level || 0);
 
     return (
         <div>
