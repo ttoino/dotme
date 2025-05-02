@@ -25,9 +25,9 @@ const ProfileGrid = () => {
       <GridLayout
         className="layout"
         layout={experienceItems}
-        cols={12}
-        rowHeight={30}
-        width={1200}
+        cols={4}
+        rowHeight={250}
+        width={1000}
         draggableHandle=".drag-handle"
         isResizable
         isDraggable

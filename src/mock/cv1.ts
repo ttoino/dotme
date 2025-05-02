@@ -121,8 +121,8 @@ const kevel: cv.experience = {
   roles: [kevel_internship],
   x: 0,
   y: 0,
-  w: 4,
-  h: 4,
+  w: 1,
+  h: 1,
 };
 
 const work: cv.area = {
@@ -283,10 +283,10 @@ const ni: cv.experience = {
   ],
   location: "Porto, Portugal",
   roles: [ni_member, ni_tts, ni_vice],
-  x: 4,
+  x: 1,
   y: 0,
-  w: 4,
-  h: 4,
+  w: 1,
+  h: 1,
 };
 
 const enei: cv.experience = {
@@ -321,10 +321,10 @@ const enei: cv.experience = {
       ],
     },
   ],
-  x: 8,
+  x: 2,
   y: 0,
-  w: 4,
-  h: 4,
+  w: 2,
+  h: 1,
 };
 
 const extracurricular: cv.area = {
