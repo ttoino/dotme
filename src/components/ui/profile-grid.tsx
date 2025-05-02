@@ -1,22 +1,30 @@
-"use client";
-
-import React from "react";
+import React, { useState } from "react";
 import GridLayout, { Layout } from "react-grid-layout";
 import "react-grid-layout/css/styles.css";
 import "react-resizable/css/styles.css";
+import { roles, cvData, experiences, areas } from "@/mock/cv1";
+import PortfolioEntry from "./portfolio-entry";
 
-const layout: Layout[] = [
-  { i: "profile", x: 0, y: 0, w: 4, h: 4 },
-  { i: "about", x: 4, y: 0, w: 4, h: 4 },
-  { i: "skills", x: 8, y: 0, w: 4, h: 4 },
-];
+
+const experienceItems = experiences.flatMap((experience, areaIndex) =>({
+  i: experience.organization, // Unique identifier for each item
+  x: experience.x, // Adjust the x position based on your layout preferences
+  y: experience.y, // Adjust the y position based on the areaIndex or any logic you prefer
+  w: experience.w, // Width of the grid item
+  h: experience.h, // Height of the grid item
+}));
+
+
 
 const ProfileGrid = () => {
+
+
+
   return (
     <div className="p-4">
       <GridLayout
         className="layout"
-        layout={layout}
+        layout={experienceItems}
         cols={12}
         rowHeight={30}
         width={1200}
@@ -24,18 +32,11 @@ const ProfileGrid = () => {
         isResizable
         isDraggable
       >
-        <div key="profile" className="bg-white border rounded shadow p-2">
-          <div className="drag-handle cursor-move font-bold">Profile</div>
-          <p>Some profile info...</p>
-        </div>
-        <div key="about" className="bg-white border rounded shadow p-2">
-          <div className="drag-handle cursor-move font-bold">About</div>
-          <p>Some about section...</p>
-        </div>
-        <div key="skills" className="bg-white border rounded shadow p-2">
-          <div className="drag-handle cursor-move font-bold">Skills</div>
-          <p>Some skills section...</p>
-        </div>
+        {experiences.map(experience => (
+          <div key={experience.organization?.toString()} className="bg-white border rounded shadow p-2">
+            <PortfolioEntry experience={experience} />
+          </div>
+        ))}
       </GridLayout>
     </div>
   );

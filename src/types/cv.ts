@@ -32,6 +32,10 @@ export interface experience {
   location?: string;
   roles: role[];
   links?: Link[];
+  x?: number;
+  y?: number;
+  w?: number;
+  h?: number;
 }
 
 export interface role {
