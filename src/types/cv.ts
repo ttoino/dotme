@@ -23,7 +23,7 @@ export interface contacts {
 export interface area {
   name: string;
   entries: experience[];
-  links?: link[];
+  links?: Link[];
 }
 
 export interface experience {
@@ -31,25 +31,21 @@ export interface experience {
   description?: RichText;
   location?: string;
   roles: role[];
-  links?: link[];
+  links?: Link[];
 }
 
 export interface role {
   title: string;
+  organization?: string;
   startDate: string;
   endDate: string;
   description: RichText;
-  links?: link[];
+  links?: Link[];
 }
 
 export interface skill {
   title: string;
   level?: number; // 1-5
-}
-
-export interface link {
-  text: string;
-  url: string;
 }
 
 // ===================================================================================================
@@ -75,4 +71,9 @@ export interface Image {
   width?: number;
   height?: number;
   caption?: string;
+}
+
+export interface Link {
+  text: string;
+  url: string;
 }
