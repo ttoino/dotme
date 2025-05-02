@@ -6,7 +6,7 @@ import { User } from "@/types/user";
 import { eq } from "drizzle-orm";
 
 export const getUser = async (email: string): Promise<User | null> => {
-  const users = await db
+  const users = await db()
     .select()
     .from(usersTable)
     .where(eq(usersTable.email, email));
@@ -17,7 +17,7 @@ export const getUser = async (email: string): Promise<User | null> => {
 
   const user = users[0];
 
-  const portfolios = await db
+  const portfolios = await db()
     .select()
     .from(cvTable)
     .where(eq(cvTable.userId, user.email));
@@ -28,7 +28,7 @@ export const getUser = async (email: string): Promise<User | null> => {
 
   const portfolio = portfolios[0];
 
-  const areas = await db
+  const areas = await db()
     .select()
     .from(areasTable)
     .where(eq(areasTable.cvId, portfolio.id));
@@ -39,7 +39,7 @@ export const getUser = async (email: string): Promise<User | null> => {
         async (area) =>
           [
             area.id,
-            await db
+            await db()
               .select()
               .from(experiencesTable)
               .where(eq(experiencesTable.areaId, area.id)),
@@ -88,10 +88,10 @@ export const createUser = async ({
   email: string;
   name: string;
 }): Promise<User> => {
-  await db.insert(usersTable).values({
+  await db().insert(usersTable).values({
     email,
   });
-  await db.insert(cvTable).values({
+  await db().insert(cvTable).values({
     userId: email,
     info_name: name,
   });
