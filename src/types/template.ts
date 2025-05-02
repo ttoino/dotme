@@ -21,4 +21,5 @@ export interface Template {
     image: string;
     category: Category;
     price: number;
+    owned?: boolean;
 }

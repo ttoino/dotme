@@ -67,7 +67,7 @@ export const rolesTable = singlestoreTable("roles_table", {
 
 export const templatesTable = singlestoreTable("templates_table", {
   id: bigint({ unsigned: true, mode: "number" }).autoincrement().primaryKey(),
-  userId: varchar({ length: 255 }).notNull(),
+  ownerId: varchar({ length: 255 }),
   name: varchar({ length: 255 }).notNull(),
   description: json().$type<RichText>().notNull(),
   image: varchar({ length: 255 }).notNull(),

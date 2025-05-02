@@ -5,6 +5,8 @@ import { Badge } from "./ui/badge";
 import { renderRichText } from "@/lib/utils";
 
 export default function TemplateCard({ template }: { template: Template }) {
+    const isFree = template.price === 0;
+
     return (
         <Card className="overflow-hidden">
             <img className="-mt-6" src={template.image} alt="" width={1600} height={900} />
@@ -14,9 +16,12 @@ export default function TemplateCard({ template }: { template: Template }) {
                     <Badge variant="outline">
                         {categoryLabels[template.category]}
                     </Badge>
-                    <Badge variant="secondary">
-                        {template.price.toFixed(2)}€
-                    </Badge>
+                    {
+                        !isFree &&
+                        <Badge variant="secondary">
+                            {(template.price / 100).toFixed(2)}€
+                        </Badge>
+                    }
                 </div>
             </CardHeader>
             <CardContent>
@@ -25,12 +30,20 @@ export default function TemplateCard({ template }: { template: Template }) {
                 </CardDescription>
             </CardContent>
             <CardFooter className="flex flex-row gap-2">
-                <Button variant="outline" className="flex-1">
-                    Preview
-                </Button>
-                <Button className="flex-1">
-                    Buy
-                </Button>
+                {template.owned ? (
+                    <Button className="flex-1">
+                        Use
+                    </Button>
+                ): (
+                    <>
+                        <Button variant="outline" className="flex-1">
+                            Preview
+                        </Button>
+                        <Button className="flex-1">
+                            {isFree ? "Get" : "Buy"}
+                        </Button>
+                    </>
+                )}
             </CardFooter>
         </Card>
     );

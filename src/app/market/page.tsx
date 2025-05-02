@@ -1,19 +1,11 @@
 import TemplateCard from "@/components/TemplateCard";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { getTemplates } from "@/lib/template";
 import { categories, categoryLabels, Template } from "@/types/template";
 import { Search } from "lucide-react";
 
-export default function Market() {
-    const templates = new Array(30).fill(null).map((_, i) => ({
-        name: `Template ${i + 1}`,
-        description: [{
-            type: "text",
-            text: "This is a description of the template. It provides a brief overview of what the template is about and its features.",
-        }],
-        image: `https://picsum.photos/1600/900?i=${i}`,
-        category: categories[Math.floor(Math.random() * categories.length)],
-        price: Math.random() * 100,
-    } satisfies Template));
+export default async function Market() {
+    const templates = await getTemplates()
 
     return (
         <div className="flex min-h-screen bg-background text-foreground flex-col">
