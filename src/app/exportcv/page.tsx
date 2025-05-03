@@ -1,15 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useCallback, useEffect } from "react";
+import { useMemo, useCallback, useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Roles, columns } from "./columns";
 import { DataTable } from "./data-table";
-import { getRolesFormattedData } from "@/lib/utils";
-import { useSearchParams } from "next/navigation";
-import { buildSelectedData } from "@/lib/utils";
-import build from "next/dist/build";
-import { useState } from "react";
+import { getRolesFormattedData, buildSelectedData } from "@/lib/utils";
 import { CV } from "@/types/cv";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
@@ -23,23 +19,55 @@ import {
 import { download_cv } from "./download";
 
 export default function ExportCV() {
-  const user_data = useMemo(() => {
-    try {
-      return JSON.parse(sessionStorage.getItem("user_data")!);
-    } catch {
-      return {};
-    }
-  }, []);
-  const roles_data = getRolesFormattedData(user_data);
-  const [cvData, setCvData] = useState<CV>(user_data);
+  const [userData, setUserData] = useState<any>(null);
+  const [rolesData, setRolesData] = useState<any[]>([]);
+  const [cvData, setCvData] = useState<CV | null>(null);
   const [includeURL, setIncludeURL] = useState(false);
   const [includeQR, setIncludeQR] = useState(false);
   const [template, setTemplate] = useState("default");
 
+  useEffect(() => {
+    try {
+      const stored = sessionStorage.getItem("user_data");
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        setUserData(parsed);
+        setRolesData(getRolesFormattedData(parsed));
+
+        const initialData = buildSelectedData(
+          parsed.portfolio,
+          getRolesFormattedData(parsed),
+          template.split("-")[0],
+          template.split("-")[1],
+          includeURL,
+          includeQR
+        );
+        setCvData(initialData);
+      }
+    } catch {
+      // Handle JSON parse error
+      setUserData({});
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!userData) return;
+    const updatedData = buildSelectedData(
+      userData.portfolio,
+      rolesData,
+      template.split("-")[0],
+      template.split("-")[1],
+      includeURL,
+      includeQR
+    );
+    setCvData(updatedData);
+  }, [includeQR, includeURL, template, userData, rolesData]);
+
   const handleSelectedRowsChange = useCallback(
     (selectedRows: any) => {
+      if (!userData) return;
       const data = buildSelectedData(
-        user_data.portfolio,
+        userData.portfolio,
         selectedRows,
         template.split("-")[0],
         template.split("-")[1],
@@ -48,20 +76,12 @@ export default function ExportCV() {
       );
       setCvData(data);
     },
-    [user_data]
+    [userData, includeURL, includeQR, template]
   );
 
-  useEffect(() => {
-    const data = buildSelectedData(
-      user_data.portfolio,
-      roles_data,
-      template.split("-")[0],
-      template.split("-")[1],
-      includeURL,
-      includeQR
-    );
-    setCvData(data);
-  }, [includeQR, includeURL, template]);
+  if (!userData) {
+    return <div className="p-8">Loading CV data...</div>;
+  }
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen">
@@ -74,7 +94,7 @@ export default function ExportCV() {
             id="include-url"
             checked={includeURL}
             onCheckedChange={setIncludeURL}
-          ></Switch>
+          />
           <Label htmlFor="include-url">Include profile link</Label>
         </div>
 
@@ -83,7 +103,7 @@ export default function ExportCV() {
             id="include-qr"
             checked={includeQR}
             onCheckedChange={setIncludeQR}
-          ></Switch>
+          />
           <Label htmlFor="include-qr">Include profile QR Code</Label>
         </div>
 
@@ -99,12 +119,8 @@ export default function ExportCV() {
             <SelectItem value="md-00002">
               Simple CV - Essentials Collection
             </SelectItem>
-            <SelectItem value="design">
-              Design Template by Mike Pound
-            </SelectItem>
-            <SelectItem value="tech">
-              Tech Job CV Template by Jane Doe
-            </SelectItem>
+            <SelectItem value="design">Design Template by Mike Pound</SelectItem>
+            <SelectItem value="tech">Tech Job CV Template by Jane Doe</SelectItem>
             <SelectItem value="light_cv_template">
               Light CV Template - Essentials Collections
             </SelectItem>
@@ -113,7 +129,7 @@ export default function ExportCV() {
 
         <DataTable
           columns={columns}
-          data={roles_data}
+          data={rolesData}
           onSelectedRowsChange={handleSelectedRowsChange}
         />
 

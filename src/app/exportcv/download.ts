@@ -1,5 +1,3 @@
-"use server";
-
 export async function download_cv(cvData: any) {
   console.log("Downloading CV with data:", cvData);
 
