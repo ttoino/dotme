@@ -5,6 +5,7 @@ import { templatesTable, templateUserRelation } from "@/db/schema";
 import { Template } from "@/types/template";
 import { eq } from "drizzle-orm";
 import { getSessionEmail } from "./auth";
+import { revalidatePath } from "next/cache";
 
 export const getTemplate = async (id: number): Promise<Template | null> => {
     const templates = await db()
@@ -17,6 +18,25 @@ export const getTemplate = async (id: number): Promise<Template | null> => {
     }
 
     return templates[0];
+}
+
+export const acquireTemplate = async (id: number): Promise<boolean | null> => {
+    const sessionEmail = await getSessionEmail();
+
+    if (!sessionEmail) {
+        return null;
+    }
+
+    const [result] = await db()
+        .insert(templateUserRelation)
+        .values({
+            userId: sessionEmail,
+            templateId: id
+        });
+
+    revalidatePath("");
+
+    return result.affectedRows >= 1;
 }
 
 export const getTemplates = async (): Promise<Template[]> => {

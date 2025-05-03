@@ -1,8 +1,8 @@
 import { categoryLabels, Template } from "@/types/template";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "./ui/card";
-import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
 import { renderRichText } from "@/lib/utils";
+import TemplateActions from "./TemplateActions";
 
 export default function TemplateCard({ template }: { template: Template }) {
     const isFree = template.price === 0;
@@ -30,20 +30,7 @@ export default function TemplateCard({ template }: { template: Template }) {
                 </CardDescription>
             </CardContent>
             <CardFooter className="flex flex-row gap-2">
-                {template.owned ? (
-                    <Button className="flex-1">
-                        Use
-                    </Button>
-                ): (
-                    <>
-                        <Button variant="outline" className="flex-1">
-                            Preview
-                        </Button>
-                        <Button className="flex-1">
-                            {isFree ? "Get" : "Buy"}
-                        </Button>
-                    </>
-                )}
+                <TemplateActions template={template} />
             </CardFooter>
         </Card>
     );
