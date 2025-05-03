@@ -6,7 +6,7 @@ import {  portfolio_entry } from "@/types/cv";
 import { and, eq } from "drizzle-orm";
 
 export const getPortfolioEntries = async (email: string): Promise<portfolio_entry[] | null> => {
-    const portfolio_entries = await db
+    const portfolio_entries = await db()
         .select()
         .from(portfolioTable)
         .where(eq(portfolioTable.userId, email))
@@ -16,23 +16,12 @@ export const getPortfolioEntries = async (email: string): Promise<portfolio_entr
         return null
     }
 
-    const portfolio_info: portfolio_entry[] = portfolio_entries.map((value) => ({
-        type: value.type,
-        id: value.foreignId.toString(),
-        x: value.x,
-        y: value.y,
-        w: value.width,
-        h: value.height,
-      }));
-
-    console.log(portfolio_info)
-
-    return portfolio_info
+    return portfolio_entries;
 }
 
 export const updatePortfolioEntry = async (entry: portfolio_entry) => {
     try {
-      const result = await db
+      const result = await db()
         .update(portfolioTable)
         .set({
           x: entry.x,

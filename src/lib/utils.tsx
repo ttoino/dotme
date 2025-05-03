@@ -97,7 +97,7 @@ export function buildSelectedData(
       name: area!.name,
       entries: [] as experience[],
     };
-    const experience = area?.entries.find(
+    const experience = area?.entries?.find(
       (experience: experience) => experience.organization === row.organization
     );
     const new_experience = {
@@ -116,7 +116,7 @@ export function buildSelectedData(
       description: role!.description,
     };
     new_experience.roles.push(new_role);
-    new_area.entries.push(new_experience);
+    new_area.entries?.push(new_experience);
     areas.push(new_area);
   });
 
@@ -131,5 +131,6 @@ export function buildSelectedData(
     contacts: user_data.contacts,
     areas: areas,
     skills: user_data.skills,
+    portfolio: [],
   };
 }

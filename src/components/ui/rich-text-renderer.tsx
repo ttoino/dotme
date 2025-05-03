@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 // Define the RichText type structure
 // This is an assumption based on common rich text formats
 // You may need to adjust this based on your actual RichText structure
@@ -24,7 +24,7 @@ interface RichTextNode {
   
       // Handle text nodes
       if (node.text) {
-        let element = node.text;
+        let element: ReactNode = node.text;
         
         // Apply formatting if specified
         if (node.bold) element = <strong key={index}>{element}</strong>;

@@ -1,14 +1,11 @@
 "use client"
 
-import React, { use, useEffect, useState } from "react";
+import React from "react";
 import GridLayout from "react-grid-layout";
 import "react-grid-layout/css/styles.css";
 import "react-resizable/css/styles.css";
-import { experiences } from "@/mock/cv1";
-import { getPortfolioEntries, updatePortfolioEntry } from "@/lib/portfolio";
-import { useSession } from "../SessionProvider";
+import { updatePortfolioEntry } from "@/lib/portfolio";
 import { experience, portfolio_entry, role, skill } from "@/types/cv";
-import { getUser } from "@/lib/user";
 import { User } from "@/types/user";
 import PortfolioEntryExperience from "./portfolio-entry-experience";
 import PortfolioEntrySkill from "./portfolio-entry-skill";
