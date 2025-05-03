@@ -1,7 +1,7 @@
 "use server";
 
 import db from "@/db";
-import { areasTable, cvTable, experiencesTable, templatesTable, templateUserRelation, usersTable } from "@/db/schema";
+import { cvTable, templatesTable, templateUserRelation, usersTable } from "@/db/schema";
 import { User } from "@/types/user";
 import { eq } from "drizzle-orm";
 

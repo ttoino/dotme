@@ -5,6 +5,7 @@ import { twMerge } from "tailwind-merge";
 import { CV, RichText } from "@/types/cv";
 import { Roles } from "@/app/exportcv/columns";
 import { area, experience, role } from "@/types/cv";
+import { User } from "@/types/user";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -55,7 +56,7 @@ export function renderRichText(nodes: RichText): React.ReactNode {
   });
 }
 
-export function getRolesFormattedData(user_data: any): Roles[] {
+export function getRolesFormattedData(user_data: User): Roles[] {
   const roles: Roles[] = [];
   user_data?.portfolio?.areas?.forEach((area: any) => {
     area.entries.forEach((entry: any) => {

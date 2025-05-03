@@ -8,7 +8,6 @@ import {
   getCoreRowModel,
   useReactTable,
   RowSelectionState, // Import RowSelectionState
-  Row, // Import Row type if needed for accessing selected data
 } from "@tanstack/react-table";
 
 import {

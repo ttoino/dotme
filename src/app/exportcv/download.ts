@@ -1,4 +1,4 @@
-export async function download_cv(cvData: any) {
+export async function download_cv(cvData: unknown) {
   try {
     const res = await fetch("/api/download", {
       method: "POST",

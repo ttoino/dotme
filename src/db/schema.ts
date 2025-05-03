@@ -1,4 +1,4 @@
-import { Link, RichText, role, skill } from "@/types/cv";
+import { RichText, skill } from "@/types/cv";
 import { Category } from "@/types/template";
 import { area } from "@/types/cv";
 import {

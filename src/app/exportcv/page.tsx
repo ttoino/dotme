@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Roles, columns } from "./columns";
+import { columns } from "./columns";
 import { DataTable } from "./data-table";
 import { getRolesFormattedData, buildSelectedData } from "@/lib/utils";
 import { CV } from "@/types/cv";

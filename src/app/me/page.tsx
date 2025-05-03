@@ -7,23 +7,21 @@ import Image from "next/image";
 import { Github, Mail, Linkedin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardTitle, CardHeader } from "@/components/ui/card";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Separator } from "@/components/ui/separator";
-import { areas } from "@/mock/cv1";
 import { renderRichText } from "@/lib/utils";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { getUser } from "@/lib/user";
+// import { getUser } from "@/lib/user";
 
-export default function Portfolio({ id }: { id: string }) {
+export default function Portfolio(/* { id }: { id: string } */) {
   const { sessionPromise } = useSession();
-  const session = use(sessionPromise);
-  const userPromisse = id ? getUser(id) : sessionPromise;
-  const user_data = use(userPromisse);
+  const userPromise = /* id ? getUser(id) : */ sessionPromise;
+  const user_data = use(userPromise);
   useEffect(() => {
     if (window) {
       sessionStorage.setItem("user_data", JSON.stringify(user_data));
     }
-  }, []);
+  }, [user_data]);
   return (
     <div className="min-h-screen flex flex-col items-center">
       <div className="flex w-1/2">
@@ -59,11 +57,11 @@ export default function Portfolio({ id }: { id: string }) {
               <Mail className="h-5 w-5" />
               <span className="sr-only">Email</span>
             </Button>
-            {!id && (
+            {/* {!id && ( */}
               <Button variant="outline">
                 <Link href="/exportcv">Export CV</Link>{" "}
               </Button>
-            )}
+            {/* )} */}
           </div>
         </section>
       </div>
