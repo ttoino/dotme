@@ -1,26 +1,29 @@
 "use client";
 
+import { use } from "react";
+import Link from "next/link";
+import { useSession } from "@/components/SessionProvider";
 import Image from "next/image";
 import { Github, Mail, Linkedin } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardTitle,
-  CardHeader,
-} from "@/components/ui/card";
+import { Card, CardContent, CardTitle, CardHeader } from "@/components/ui/card";
 import { useEffect, useState } from "react";
 import { Separator } from "@/components/ui/separator";
 import { areas } from "@/mock/cv1";
 import { renderRichText } from "@/lib/utils";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import { getUser } from "@/lib/user";
 
-export default function Portfolio() {
-  const [viewMode, /* setViewMode */] = useState("chronological"); // chronological | group by area
-
-  // const [data, setData] = useState({});
-
-  useEffect(() => {}, [viewMode]);
+export default function Portfolio({ id }: { id: string }) {
+  const { sessionPromise } = useSession();
+  const session = use(sessionPromise);
+  const userPromisse = id ? getUser(id) : sessionPromise;
+  const user_data = use(userPromisse);
+  useEffect(() => {
+    if (window) {
+      sessionStorage.setItem("user_data", JSON.stringify(user_data));
+    }
+  }, []);
   return (
     <div className="min-h-screen flex flex-col items-center">
       <div className="flex w-1/2">
@@ -36,11 +39,11 @@ export default function Portfolio() {
         </section>
 
         <section className="flex flex-col gap-3 justify-center items-center flex-grow p-3">
-          <h1 className="text-3xl md:text-5xl font-bold tracking-tighter fg-foreground">
-            Ruben Esteves
+          <h1 className="text-3xl md:text-5xl font-bold tracking-tighter">
+            {user_data?.portfolio.info.name}
           </h1>
-          <p className="text-xl md:text-2xl text-foreground">
-            Department Manager @ Kidzania
+          <p className="text-xl md:text-2xl text-gray-600">
+            {user_data?.portfolio.info.roles.join(", ")}
           </p>
 
           <div className="flex space-x-4">
@@ -56,6 +59,11 @@ export default function Portfolio() {
               <Mail className="h-5 w-5" />
               <span className="sr-only">Email</span>
             </Button>
+            {!id && (
+              <Button variant="outline">
+                <Link href="/exportcv">Export CV</Link>{" "}
+              </Button>
+            )}
           </div>
         </section>
       </div>
@@ -65,27 +73,28 @@ export default function Portfolio() {
       </div>
 
       <section className="w-1/2 items-center p-3">
-        <Tabs defaultValue="home" className="">
+        <Tabs defaultValue="about-me" className="">
           <TabsList className={`w-full`}>
             <TabsTrigger value="about-me">About Me</TabsTrigger>
-            {areas.map((area, index) => (
+            {user_data?.portfolio.areas.map((area, index) => (
               <TabsTrigger value={area.name} key={`area-${index}`}>
                 {area.name.charAt(0).toUpperCase() + area.name.slice(1)}
               </TabsTrigger>
             ))}
           </TabsList>
           <TabsContent value="about-me">
-            <h2 className="text-2xl md:text-3xl font-bold mb-8">About Me</h2>
-            <div className="max-w-3xl mx-auto">
-              <p className="text-foreground mb-6">
-                I&apos;m a passionate Full Stack Developer with 5+ years of
-                experience building web applications. I specialize in React,
-                Next.js, Node.js, and modern web technologies. My goal is to
-                create intuitive, efficient, and beautiful digital experiences.
-              </p>
-            </div>
+            {user_data?.portfolio.info.bio && (
+              <>
+                <h2 className="text-2xl md:text-3xl font-bold mb-8">
+                  About Me
+                </h2>
+                <div className="max-w-3xl mx-auto text-gray-600 mb-6">
+                  {renderRichText(user_data.portfolio.info.bio)}
+                </div>
+              </>
+            )}
           </TabsContent>
-          {areas.map((area) => (
+          {user_data?.portfolio.areas.map((area) => (
             <TabsContent
               className="my-5"
               value={area.name}
@@ -107,9 +116,11 @@ export default function Portfolio() {
                             <p className="text-foreground">
                               {role.startDate} - {role.endDate}
                             </p>
-                            <span className="text-foreground">
-                              {renderRichText(role.description)}
-                            </span>
+                            {role.description && (
+                              <span className="text-gray-600">
+                                {renderRichText(role.description)}
+                              </span>
+                            )}
                           </div>
                           {index < entry.roles.length - 1 && (
                             <Separator className="my-4" />
@@ -124,113 +135,6 @@ export default function Portfolio() {
           ))}
         </Tabs>
       </section>
-
-      {/* <section className="w-50% flex justify-center">
-        <div className="flex flex-col gap-5 p-3">
-          {roles.map((role, index) => (
-            <div key={index}>
-              <article>
-                <span className="font-bold flex gap-2">
-                  <p>{role.title}</p>
-                  <p className="text-blue-400">@</p>
-                </span>
-                <p className="text-gray-600">
-                  {role.startDate} - {role.endDate}
-                </p>
-                <span className="text-gray-600">
-                  {renderRichText(role.description)}
-                </span>
-              </article>
-              {index < roles.length - 1 && <Separator className="my-4" />}
-            </div>
-          ))}
-        </div>
-      </section> */}
-
-      {/* Projects Section */}
-      {/* <section className="py-12 md:py-24 bg-gray-50">
-        <div className="container px-4 md:px-6">
-          <h2 className="text-2xl md:text-3xl font-bold text-center mb-12">
-            My Projects
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {projects.map((project, index) => (
-              <Card key={index} className="overflow-hidden">
-                <div className="relative h-48">
-                  <Image
-                    src={project.image || "/placeholder.svg"}
-                    alt={project.title}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <CardContent className="p-6">
-                  <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-                  <p className="text-gray-600 mb-4">{project.description}</p>
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.technologies.map((tech, i) => (
-                      <Badge key={i} variant="secondary">
-                        {tech}
-                      </Badge>
-                    ))}
-                  </div>
-                  <div className="flex justify-end">
-                    <Button variant="outline" size="sm" className="mr-2">
-                      <Github className="h-4 w-4 mr-2" />
-                      Code
-                    </Button>
-                    <Button size="sm">
-                      <ExternalLink className="h-4 w-4 mr-2" />
-                      Demo
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section> */}
-      {/* Skills Section */}
-      {/* <section className="py-12 md:py-24">
-        <div className="container px-4 md:px-6">
-          <h2 className="text-2xl md:text-3xl font-bold text-center mb-12">
-            Skills
-          </h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-4xl mx-auto">
-            {skills.map((skill, index) => (
-              <div
-                key={index}
-                className="flex flex-col items-center p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow"
-              >
-                <div className="h-12 w-12 flex items-center justify-center mb-3">
-                  <Image
-                    src="/placeholder.svg?height=48&width=48"
-                    alt={skill}
-                    width={48}
-                    height={48}
-                  />
-                </div>
-                <span className="text-center font-medium">{skill}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section> */}
     </div>
   );
 }
-
-// const skills = [
-//   "JavaScript",
-//   "TypeScript",
-//   "React",
-//   "Next.js",
-//   "Node.js",
-//   "Express",
-//   "MongoDB",
-//   "PostgreSQL",
-//   "GraphQL",
-//   "Tailwind CSS",
-//   "Git",
-//   "Docker",
-// ];

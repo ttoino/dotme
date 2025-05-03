@@ -14,6 +14,7 @@ INSERT INTO cv_table (
         contacts_phone,
         contacts_github,
         contacts_linkedin,
+        areas,
         skills
     )
 VALUES (
@@ -73,7 +74,34 @@ VALUES (
         '965358804',
         'github.com/diogotvf7',
         'linkedin.com/in/diogotv-fernandes',
-        '[
+        '' [
+  {
+    "id": 1,
+    "title": "NIAEFEUP",
+    "description": [
+      {
+        "type": "paragraph",
+        "children": [
+          { "type": "text", "text": "NIAEFEUP is the ..." }
+        ] } ],
+        "location": "Porto, Portugal",
+        "roles": [
+      {
+        "title": "Vice-President and Head of Human Resources",
+        "startDate": "Jun 2022",
+        "endDate": "Present",
+        "description": [
+          {
+            "type": "list",
+            "items": [
+              [
+                { "type": "text", "text": "As the " },
+                { "type": "text", "text": "Vice President", "bold": true },
+                { "type": "text", "text": ", I support ..." }
+              ] ] } ],
+        "achievements": [] } ] } ] '
+',
+        ' [
         { "title": "C" },
         { "title": "C++" },
         { "title": "Dart" },
@@ -100,113 +128,5 @@ VALUES (
         { "title": "Tailwind" },
         { "title": "Typescript" },
         { "title": "Docker" }
-    ]'
-    );
-INSERT INTO areas_table (cvId, name)
-VALUES (1, "Experience");
-INSERT INTO experiences_table (
-        areaId,
-        organization,
-        description,
-        location,
-        roles,
-        links
-    )
-VALUES (
-        1,
-        'NIAEFEUP',
-        '[
-      {
-        "type": "paragraph",
-        "children": [
-          { "type": "text", "text": "NIAEFEUP is the " },
-          { "type": "text", "text": "Informatics Student Group", "bold": true },
-          { "type": "text", "text": " at the Faculty of Engineering of the University of Porto (" },
-          { "type": "text", "text": "FEUP", "bold": true },
-          { "type": "text", "text": "), dedicated to promoting " },
-          { "type": "text", "text": "student development", "bold": true },
-          { "type": "text", "text": " through " },
-          { "type": "text", "text": "academic events", "bold": true },
-          { "type": "text", "text": ", " },
-          { "type": "text", "text": "workshops", "bold": true },
-          { "type": "text", "text": ", and " },
-          { "type": "text", "text": "open-source projects", "bold": true },
-          { "type": "text", "text": "." }
-        ]
-      }
-    ]',
-        'Porto, Portugal',
-        '[1, 2]',
-        '[]'
-    );
-INSERT INTO roles_table (title, startDate, endDate, description, links)
-VALUES (
-        'Vice-President and Head of Human Resources',
-        'Jun 2022',
-        'Present',
-        '[
-      {
-        "type": "list",
-        "items": [
-          [
-            { "type": "text", "text": "As the " },
-            { "type": "text", "text": "Vice President", "bold": true },
-            { "type": "text", "text": ", I support the President in decision-making and organize regular meetings to enhance communication and cohesion within " },
-            { "type": "text", "text": "NIAEFEUP", "bold": true },
-            { "type": "text", "text": "." }
-          ],
-          [
-            { "type": "text", "text": "As the " },
-            { "type": "text", "text": "Head of Human Resources", "bold": true },
-            { "type": "text", "text": ", I managed recruitment and coordinate team-building activities to improve member integration and organizational cohesion." }
-          ]
-        ]
-      }
-    ]',
-        '[]'
-    ),
-    (
-        'Project Manager of TTS',
-        'Jun 2022',
-        'Present',
-        '[
-      {
-        "type": "paragraph",
-        "children": [
-          { "type": "text", "text": "As the " },
-          { "type": "text", "text": "Project Manager", "bold": true },
-          { "type": "text", "text": " for TTS, I oversaw strategic planning and team management to align with project objectives." }
-        ]
-      },
-      {
-        "type": "list",
-        "items": [
-          [
-            { "type": "text", "text": "Led a refactor of the codebase to enhance " },
-            { "type": "text", "text": "maintainability", "bold": true },
-            { "type": "text", "text": " and " },
-            { "type": "text", "text": "scalability", "bold": true },
-            { "type": "text", "text": "." }
-          ],
-          [
-            { "type": "text", "text": "Implemented a " },
-            { "type": "text", "text": "Kanban board", "bold": true },
-            { "type": "text", "text": " to optimize workflow." }
-          ],
-          [
-            { "type": "text", "text": "Integrated " },
-            { "type": "text", "text": "Scrum methodologies", "bold": true },
-            { "type": "text", "text": " for efficient project management." }
-          ],
-          [
-            { "type": "text", "text": "Introduced UI/UX enhancements such as " },
-            { "type": "text", "text": "streamlined navigation", "bold": true },
-            { "type": "text", "text": " and " },
-            { "type": "text", "text": "intuitive interface elements", "bold": true },
-            { "type": "text", "text": " to improve the TTS experience." }
-          ]
-        ]
-      }
-    ]',
-        '[]'
+    ] '
     );
