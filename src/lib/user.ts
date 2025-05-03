@@ -1,7 +1,7 @@
 "use server";
 
 import db from "@/db";
-import { areasTable, cvTable, experiencesTable, usersTable } from "@/db/schema";
+import { areasTable, cvTable, experiencesTable, templatesTable, templateUserRelation, usersTable } from "@/db/schema";
 import { User } from "@/types/user";
 import { eq } from "drizzle-orm";
 
@@ -48,6 +48,12 @@ export const getUser = async (email: string): Promise<User | null> => {
     )
   );
 
+  const templates = await db()
+    .select()
+    .from(templatesTable)
+    .leftJoin(templateUserRelation, eq(templatesTable.id, templateUserRelation.templateId))
+    .where(eq(templateUserRelation.userId, user.email));
+
   const userWithPortfolio: User = {
     ...user,
     portfolio: {
@@ -76,6 +82,7 @@ export const getUser = async (email: string): Promise<User | null> => {
       })),
       skills: portfolio.skills ?? [],
     },
+    templates: templates.map(t => t.templates_table),
   };
 
   return userWithPortfolio;

@@ -21,10 +21,11 @@ function LoggedInButtons({user}: { user: User }) {
     const image = user.portfolio.info.profile_picture;
 
     return (
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2">
           <Button
             variant="ghost"
-            className="rounded-full h-10 w-10 p-0 "
+            className="rounded-full h-10 w-10 p-0"
+            size="icon"
             aria-label="Profile"
             asChild
           >
@@ -39,6 +40,7 @@ function LoggedInButtons({user}: { user: User }) {
           {/* Settings */}
           <Button
             variant="ghost"
+            className="rounded-full"
             size="icon"
             aria-label="Settings"
             title="Settings"
@@ -52,6 +54,7 @@ function LoggedInButtons({user}: { user: User }) {
           {/* Logout */}
           <Button
             variant="ghost"
+            className="rounded-full"
             size="icon"
             aria-label="Logout"
             title="Logout"

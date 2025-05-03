@@ -4,8 +4,10 @@ import { User } from "@/types/user";
 import { createUser, getUser } from "./user"
 import { cookies } from "next/headers";
 
+export const getSessionEmail = async (): Promise<string | null> => (await cookies()).get("email")?.value ?? null;
+
 export const getSession = async (): Promise<User | null> => {
-    const email = (await cookies()).get("email")?.value;
+    const email = await getSessionEmail();
 
     if (!email) {
         return null;

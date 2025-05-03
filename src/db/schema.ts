@@ -1,7 +1,10 @@
 import { Link, RichText, role, skill } from "@/types/cv";
+import { Category } from "@/types/template";
 import {
+  bigint,
   int,
   json,
+  primaryKey,
   singlestoreTable,
   timestamp,
   varchar,
@@ -19,7 +22,7 @@ export const usersTable = singlestoreTable("users_table", {
 });
 
 export const cvTable = singlestoreTable("cv_table", {
-  id: int({ unsigned: true }).autoincrement().primaryKey(),
+  id: bigint({ unsigned: true, mode: "number" }).autoincrement().primaryKey(),
   userId: varchar({ length: 255 }).notNull(),
   info_name: varchar({ length: 255 }).notNull(),
   info_profilePicture: varchar({ length: 255 }),
@@ -61,3 +64,20 @@ export const rolesTable = singlestoreTable("roles_table", {
   links: json().$type<Link[]>(),
   ...timestamps,
 });
+
+export const templatesTable = singlestoreTable("templates_table", {
+  id: bigint({ unsigned: true, mode: "number" }).autoincrement().primaryKey(),
+  ownerId: varchar({ length: 255 }),
+  name: varchar({ length: 255 }).notNull(),
+  description: json().$type<RichText>().notNull(),
+  image: varchar({ length: 255 }).notNull(),
+  category: varchar({ length: 255 }).$type<Category>().notNull(),
+  price: int({ unsigned: true }).notNull(),
+});
+
+export const templateUserRelation = singlestoreTable("template_user_relation", {
+  userId: varchar({ length: 255 }),
+  templateId: bigint({ unsigned: true, mode: "number" }),
+},  (table) => [
+  primaryKey({columns: [table.userId, table.templateId]}),
+]);
