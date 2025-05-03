@@ -30,15 +30,24 @@ export default function Navbar() {
         
         </Link>
         <div className="hidden md:flex gap-6 items-center text-sm font-medium text-muted-foreground">
-          <Link href="/feed" className="hover:text-foreground transition-colors">
+          <Link
+            href="/"
+            className="hover:text-foreground transition-colors"
+          >
             Feed
           </Link>
-          <Link href="/projects" className="hover:text-foreground transition-colors">
-            Projects
+          <Link
+            href="/market"
+            className="hover:text-foreground transition-colors"
+          >
+            Market
           </Link>
-          <Link href="/contact" className="hover:text-foreground transition-colors">
+          {/* <Link
+            href="/contact"
+            className="hover:text-foreground transition-colors"
+          >
             Contact
-          </Link>
+          </Link> */}
         </div>
 
         <div className="flex items-center gap-2">

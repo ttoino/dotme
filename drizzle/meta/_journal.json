@@ -1,0 +1,20 @@
+{
+  "version": "7",
+  "dialect": "singlestore",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "1",
+      "when": 1746186392306,
+      "tag": "0000_soft_moondragon",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "1",
+      "when": 1746232678567,
+      "tag": "0001_workable_electro",
+      "breakpoints": true
+    }
+  ]
+}

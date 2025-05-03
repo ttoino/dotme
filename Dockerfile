@@ -37,6 +37,12 @@ ENV NEXT_TELEMETRY_DISABLED=1
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
+COPY --from=deps /app/node_modules ./node_modules
+
+RUN corepack enable pnpm
+
+COPY --from=builder /app/package.json /app/drizzle.config.ts ./
+COPY --from=builder /app/drizzle ./drizzle
 COPY --from=builder /app/public ./public
 
 # Automatically leverage output traces to reduce image size
@@ -53,4 +59,4 @@ ENV PORT=3000
 # server.js is created by next build from the standalone output
 # https://nextjs.org/docs/pages/api-reference/config/next-config-js/output
 ENV HOSTNAME="0.0.0.0"
-CMD ["node", "server.js"]
+CMD [ "/bin/sh", "-c", "pnpm run db:migrate && node server.js" ]
