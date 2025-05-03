@@ -25,6 +25,7 @@ export default function ExportCV() {
   const [includeURL, setIncludeURL] = useState(false);
   const [includeQR, setIncludeQR] = useState(false);
   const [template, setTemplate] = useState("default");
+  const [selectedRows, setSelectedRows] = useState<any[]>([]);
 
   useEffect(() => {
     try {
@@ -51,20 +52,23 @@ export default function ExportCV() {
   }, []);
 
   useEffect(() => {
-    if (!userData) return;
+    if (!userData || selectedRows.length === 0) return;
     const updatedData = buildSelectedData(
       userData.portfolio,
-      rolesData,
+      selectedRows,
       template.split("-")[0],
       template.split("-")[1],
       includeURL,
       includeQR
     );
     setCvData(updatedData);
-  }, [includeQR, includeURL, template, userData, rolesData]);
+  }, [includeQR, includeURL, template, userData, selectedRows]);
+  
 
   const handleSelectedRowsChange = useCallback(
     (selectedRows: any) => {
+      setSelectedRows(selectedRows);
+  
       if (!userData) return;
       const data = buildSelectedData(
         userData.portfolio,
