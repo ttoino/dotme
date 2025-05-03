@@ -48,6 +48,7 @@ export const portfolioTable = singlestoreTable("portfolio_table", {
   y: int({ unsigned: true }).notNull(),
   width: int({ unsigned: true }).notNull(),
   height: int({ unsigned: true }).notNull(),
+  ...timestamps,
 })
 
 export const templatesTable = singlestoreTable("templates_table", {
@@ -58,6 +59,7 @@ export const templatesTable = singlestoreTable("templates_table", {
   image: varchar({ length: 255 }).notNull(),
   category: varchar({ length: 255 }).$type<Category>().notNull(),
   price: int({ unsigned: true }).notNull(),
+  ...timestamps,
 });
 
 export const templateUserRelation = singlestoreTable("template_user_relation", {
