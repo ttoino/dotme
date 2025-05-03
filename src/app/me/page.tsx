@@ -29,7 +29,10 @@ export default function Portfolio(/* { id }: { id: string } */) {
         <section className="flex flex-col gap-3 items-center p-3">
           <div className="w-[190px] h-[190px] relative rounded-full overflow-hidden">
             <Image
-              src="/IMG_9846.JPG"
+              src={
+                user_data?.portfolio.info.profile_picture ||
+                "/placeholder-profile.png"
+              }
               alt="Profile Picture"
               fill
               className="object-cover object-center"
@@ -91,7 +94,7 @@ export default function Portfolio(/* { id }: { id: string } */) {
                 <h2 className="text-2xl md:text-3xl font-bold mb-8">
                   About Me
                 </h2>
-                <div className="max-w-3xl mx-auto text-gray-600 mb-6">
+                <div className="max-w-3xl mx-auto mb-6">
                   {renderRichText(user_data.portfolio.info.bio)}
                 </div>
               </>

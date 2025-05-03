@@ -8,6 +8,7 @@ import { LogOut, Settings } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 import { logout } from "@/lib/auth";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function UserButtons() {
   const { sessionPromise } = useSession();
@@ -29,10 +30,14 @@ function LoggedInButtons({ user }: { user: User }) {
         asChild
       >
         <Link href="/me">
-          <Avatar>
-            <AvatarImage src={image} alt={name} />
-            <AvatarFallback>{name[0]}</AvatarFallback>
-          </Avatar>
+          <div className="w-[30px] h-[30px] relative rounded-full overflow-hidden">
+            <Image
+              src={image || "/default-profile.png"}
+              alt="Profile Picture"
+              fill
+              className="object-cover object-center"
+            />
+          </div>
         </Link>
       </Button>
 

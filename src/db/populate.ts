@@ -1,3 +1,5 @@
+import { desc } from "drizzle-orm";
+
 db.insert(usersTable).values({
   email: "diogo@dotme.com",
 });
@@ -5,7 +7,7 @@ db.insert(usersTable).values({
 db.insert(cvTable).values({
   userId: "diogo@dotme.com",
   infoName: "Diogo Fernandes",
-  infoProfilePicture: "/diogo.png",
+  infoProfilePicture: "/IMG_9846.JPG",
   infoRoles: [
     "Vice-president @ NIAEFEUP",
     "Head of Program @ ENEI",
@@ -17,26 +19,51 @@ db.insert(cvTable).values({
       children: [
         {
           type: "text",
-          text: "Diogo Fernandes is a Masters student in Informatics Engineering at FEUP, with hands-on experience in software development and leadership in student-driven initiatives.",
+          text: "Diogo Fernandes is a Master's student in Informatics Engineering at FEUP (Faculty of Engineering of the University of Porto), with strong technical skills in software development and a proven track record in leadership and project coordination.",
         },
       ],
     },
     {
       type: "paragraph",
       children: [
-        { type: "text", text: "As " },
-        { type: "text", text: "Vice President", bold: true },
-        { type: "text", text: " of NIAEFEUP and " },
-        { type: "text", text: "Head of Program", bold: true },
         {
           type: "text",
-          text: ", he has played key roles in organizing large-scale events and driving open-source projects.",
+          text: "He has actively contributed to the student community through his work at ",
+        },
+        { type: "text", text: "NIAEFEUP", bold: true },
+        {
+          type: "text",
+          text: ", where he currently serves as ",
+        },
+        { type: "text", text: "Vice President", bold: true },
+        {
+          type: "text",
+          text: ". In this role, Diogo has led strategic initiatives, managed diverse teams, and played a key part in shaping the direction of the association. His responsibilities have included overseeing open-source projects that benefit the broader academic ecosystem and supporting interdisciplinary collaboration among students.",
         },
       ],
     },
     {
       type: "paragraph",
-      children: [{ type: "text", text: "." }],
+      children: [
+        {
+          type: "text",
+          text: "Previously, as ",
+        },
+        { type: "text", text: "Head of Program", bold: true },
+        {
+          type: "text",
+          text: " for one of the largest student-run tech conferences in Portugal, he was responsible for curating and managing the entire event agenda. This included coordinating with speakers, handling logistics, and ensuring a high-quality experience for hundreds of participants.",
+        },
+      ],
+    },
+    {
+      type: "paragraph",
+      children: [
+        {
+          type: "text",
+          text: "Through these roles, Diogo has developed a unique blend of technical proficiency, organizational leadership, and community engagement, positioning him as a well-rounded and impactful contributor to both academic and professional environments.",
+        },
+      ],
     },
   ],
   contactsEmail: "diogotvf7@gmail.com",
@@ -47,6 +74,55 @@ db.insert(cvTable).values({
     {
       name: "Academic Experience",
       entries: [
+        {
+          organization: "FEUP",
+          description: [
+            {
+              type: "paragraph",
+              children: [
+                {
+                  type: "text",
+                  text: "FEUP (Faculty of Engineering of the University of Porto) is one of Portugal’s top engineering schools, known for its strong research, academic excellence, and industry partnerships.",
+                },
+              ],
+            },
+          ],
+          location: "Porto, Portugal",
+          roles: [
+            {
+              title: "BSc in Informatics Engineering and Computation",
+              startDate: "2021-09-01",
+              endDate: "2024-07-01",
+              description: [
+                {
+                  type: "paragraph",
+                  children: [
+                    {
+                      type: "text",
+                      text: "Finished the BSc in Informatics Engineering and Computation with a 16.45/20 grade.",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              title: "MSc in Informatics Engineering and Computing",
+              startDate: "2024-09-01",
+              endDate: "2026-07-01",
+              description: [
+                {
+                  type: "paragraph",
+                  children: [
+                    {
+                      type: "text",
+                      text: "Currently pursuing a MSc in Informatics Engineering. Current average: 16.45/20.",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
         {
           organization: "NIAEFEUP",
           description: [
@@ -94,38 +170,6 @@ db.insert(cvTable).values({
                 },
               ],
             },
-            {
-              title: "BSc in Informatics Engineering and Computation",
-              startDate: "2021-09-01",
-              endDate: "2024-07-01",
-              description: [
-                {
-                  type: "paragraph",
-                  children: [
-                    {
-                      type: "text",
-                      text: "Finished the BSc in Informatics Engineering and Computation with a 16.45/20 grade.",
-                    },
-                  ],
-                },
-              ],
-            },
-            {
-              title: "MSc in Informatics Engineering and Computing",
-              startDate: "2024-09-01",
-              endDate: "2026-07-01",
-              description: [
-                {
-                  type: "paragraph",
-                  children: [
-                    {
-                      type: "text",
-                      text: "Currently pursuing a MSc in Informatics Engineering. Current average: 16.45/20.",
-                    },
-                  ],
-                },
-              ],
-            },
           ],
         },
       ],
@@ -135,6 +179,81 @@ db.insert(cvTable).values({
       name: "Professional Experience",
       entries: [
         {
+          organization: "Google",
+          description: [
+            {
+              type: "paragraph",
+              children: [
+                {
+                  type: "text",
+                  text: "Google is a global leader in internet services and products, known for innovation in search, cloud computing, and AI.",
+                },
+              ],
+            },
+          ],
+          location: "Zurich, Switzerland",
+          roles: [
+            {
+              title: "Software Engineering Intern – Google Search",
+              startDate: "2024-06-01",
+              endDate: "2024-09-01",
+              description: [
+                {
+                  type: "paragraph",
+                  children: [
+                    {
+                      type: "text",
+                      text: "Optimized search ranking algorithms using real-time user feedback and A/B testing frameworks. Reduced average query latency by 12%.",
+                    },
+                  ],
+                },
+                {
+                  type: "paragraph",
+                  children: [
+                    {
+                      type: "text",
+                      text: "Developed internal dashboards using TypeScript and React to help data scientists track index freshness.",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          organization: "Figma",
+          description: [
+            {
+              type: "paragraph",
+              children: [
+                {
+                  type: "text",
+                  text: "Figma is a web-based design and prototyping tool, revolutionizing collaborative UI/UX workflows.",
+                },
+              ],
+            },
+          ],
+          location: "Remote",
+          roles: [
+            {
+              title: "Frontend Developer Intern",
+              startDate: "2022-07-01",
+              endDate: "2022-09-01",
+              description: [
+                {
+                  type: "paragraph",
+                  children: [
+                    {
+                      type: "text",
+                      text: "Contributed to the Figma plugin ecosystem by building community-requested utilities with TypeScript and WebAssembly bindings.",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
           organization: "Kevel",
           description: [
             {
@@ -142,16 +261,16 @@ db.insert(cvTable).values({
               children: [
                 {
                   type: "text",
-                  text: "Kevel is a company that provides a platform for building custom ad servers.",
+                  text: "Kevel provides a platform for building custom ad servers. During the internship, I focused on enhancing internal development tools.",
                 },
               ],
             },
           ],
-          location: "Porto, Portugal",
+          location: "Porto, Portugal / Hybrid",
           roles: [
             {
               title: "Software Engineer Intern",
-              startDate: "2023-06-01",
+              startDate: "2023-07-01",
               endDate: "2023-09-01",
               description: [
                 {
@@ -159,7 +278,7 @@ db.insert(cvTable).values({
                   children: [
                     {
                       type: "text",
-                      text: "Worked on building a custom ad server using Node.js and React.",
+                      text: "Developed a React component library using Storybook to be used across Kevel's products, published via NPM and deployed to GitHub Pages.",
                     },
                   ],
                 },
@@ -199,6 +318,28 @@ db.insert(cvTable).values({
                     {
                       type: "text",
                       text: "Won 2nd place in the Hackathon.",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          organization: "Code Hero 2nd Edition",
+          location: "Aveiro, Portugal",
+          roles: [
+            {
+              title: "3rd Place",
+              startDate: "2021-12-01",
+              endDate: "2021-12-03",
+              description: [
+                {
+                  type: "paragraph",
+                  children: [
+                    {
+                      type: "text",
+                      text: "Earned 3rd place in a national programming competition. First experience with JavaScript and competitive programming.",
                     },
                   ],
                 },
@@ -252,37 +393,37 @@ db.insert(cvTable).values({
   skills: [
     {
       title: "Chefe",
-      level: 4
-    }
-  ]
+      level: 4,
+    },
+  ],
 });
 
 db.insert(portfolioTable).values({
   userId: "diogo@dotme.com",
   type: "experience",
   foreignId: "NIAEFEUP",
-  x:0,
-  y:0,
-  width:1,
-  height:2,
-})
+  x: 0,
+  y: 0,
+  width: 1,
+  height: 2,
+});
 
 db.insert(portfolioTable).values({
   userId: "diogo@dotme.com",
   type: "skill",
   foreignId: "Chefe",
-  x:1,
-  y:0,
-  width:2,
-  height:1,
-})
+  x: 1,
+  y: 0,
+  width: 2,
+  height: 1,
+});
 
 db.insert(portfolioTable).values({
   userId: "diogo@dotme.com",
   type: "role",
   foreignId: "Software Engineer Intern",
-  x:1,
-  y:1,
-  width:2,
-  height:1,
-})
+  x: 1,
+  y: 1,
+  width: 2,
+  height: 1,
+});
