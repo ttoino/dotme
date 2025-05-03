@@ -15,6 +15,13 @@
       "when": 1746232678567,
       "tag": "0001_workable_electro",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "1",
+      "when": 1746241316879,
+      "tag": "0002_fuzzy_anthem",
+      "breakpoints": true
     }
   ]
 }
