@@ -1,0 +1,70 @@
+<link href='00002.css' rel='stylesheet' type='text/css'>
+
+<div class="wrapper clearfix">
+  <div class="left">
+
+    <div class="name-hero">
+
+      <div class="me-img"></div>
+
+      <div class="name-text">
+
+        <h1>{{ info.name }}</h1>
+        <p>{{ contacts.address }}</p>
+        <p>{{ contacts.email }}</p>
+        <p>{{ contacts.phone }}</p>
+
+      </div>
+
+    </div>
+
+  </div>
+  <div class="right">
+
+    <div class="inner">
+
+      {% for area in areas %}
+      <section>
+        <h1>{{ area.name }}</h1>
+
+        {% for entry in area.entries %}
+        <p>{{ entry.time }} <em>{{ entry.organization }} | {{ entry.role }}</em></p>
+        <p>{{ entry.description }}</p>
+
+          {% if entry.roles %}
+            {% for role in entry.roles %}
+              <p><strong>{{ role.title }}</strong> ~ {{ role.startDate }} - {{ role.endDate }}</p>
+              {% if role.links %}
+                {% for link in role.links %}
+                  <p>~ <a href="{{ link.url }}">{{ link.text }}</a></p>
+                {% endfor %}
+              {% endif %}
+              <p>{{ role.description }}</p>
+            {% endfor %}
+          {% endif %}
+
+        {% endfor %}
+      </section>
+      {% endfor %}
+
+      <section>
+        <h1>Skills</h1>
+        <ul class="skill-set">
+          {% for skill in skills %}
+            <li>{{ skill.title }}</li>
+          {% endfor %}
+        </ul>
+      </section>
+
+
+      <section>
+        <div class="handmade">
+          <p>handmade by <em>{{ info.name }}</em></p>
+        </div>
+      </section>
+
+    </div>
+
+  </div>
+
+</div>
