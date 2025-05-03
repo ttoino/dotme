@@ -1,7 +1,6 @@
-
 import { RichText, skill, area } from "@/types/cv";
 import { Category } from "@/types/template";
-import { } from "@/types/cv";
+import {} from "@/types/cv";
 import {
   int,
   bigint,
@@ -49,7 +48,7 @@ export const portfolioTable = singlestoreTable("portfolio_table", {
   width: int({ unsigned: true }).notNull(),
   height: int({ unsigned: true }).notNull(),
   ...timestamps,
-})
+});
 
 export const templatesTable = singlestoreTable("templates_table", {
   id: bigint({ unsigned: true, mode: "number" }).autoincrement().primaryKey(),
@@ -62,9 +61,11 @@ export const templatesTable = singlestoreTable("templates_table", {
   ...timestamps,
 });
 
-export const templateUserRelation = singlestoreTable("template_user_relation", {
-  userId: varchar({ length: 255 }),
-  templateId: bigint({ unsigned: true, mode: "number" }),
-},  (table) => [
-  primaryKey({columns: [table.userId, table.templateId]}),
-]);
+export const templateUserRelation = singlestoreTable(
+  "template_user_relation",
+  {
+    userId: varchar({ length: 255 }),
+    templateId: bigint({ unsigned: true, mode: "number" }),
+  },
+  (table) => [primaryKey({ columns: [table.userId, table.templateId] })]
+);

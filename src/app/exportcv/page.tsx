@@ -63,12 +63,11 @@ export default function ExportCV() {
     );
     setCvData(updatedData);
   }, [includeQR, includeURL, template, userData, selectedRows]);
-  
 
   const handleSelectedRowsChange = useCallback(
     (selectedRows: any) => {
       setSelectedRows(selectedRows);
-  
+
       if (!userData) return;
       const data = buildSelectedData(
         userData.portfolio,
@@ -123,8 +122,12 @@ export default function ExportCV() {
             <SelectItem value="md-00002">
               Simple CV - Essentials Collection
             </SelectItem>
-            <SelectItem value="design">Design Template by Mike Pound</SelectItem>
-            <SelectItem value="tech">Tech Job CV Template by Jane Doe</SelectItem>
+            <SelectItem value="design">
+              Design Template by Mike Pound
+            </SelectItem>
+            <SelectItem value="tech">
+              Tech Job CV Template by Jane Doe
+            </SelectItem>
             <SelectItem value="light_cv_template">
               Light CV Template - Essentials Collections
             </SelectItem>

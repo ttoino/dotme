@@ -59,9 +59,9 @@ export default function Portfolio(/* { id }: { id: string } */) {
               <span className="sr-only">Email</span>
             </Button>
             {/* {!id && ( */}
-              <Button variant="outline">
-                <Link href="/exportcv">Export CV</Link>{" "}
-              </Button>
+            <Button variant="outline">
+              <Link href="/exportcv">Export CV</Link>{" "}
+            </Button>
             {/* )} */}
           </div>
         </section>
@@ -83,7 +83,7 @@ export default function Portfolio(/* { id }: { id: string } */) {
             ))}
           </TabsList>
           <TabsContent value="home">
-            <ProfileGrid user={user_data!}/>
+            <ProfileGrid user={user_data!} />
           </TabsContent>
           <TabsContent value="about-me">
             {user_data?.portfolio.info.bio && (
