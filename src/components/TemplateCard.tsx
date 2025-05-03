@@ -3,13 +3,14 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Badge } from "./ui/badge";
 import { renderRichText } from "@/lib/utils";
 import TemplateActions from "./TemplateActions";
+import Image from "next/image";
 
 export default function TemplateCard({ template }: { template: Template }) {
     const isFree = template.price === 0;
 
     return (
         <Card className="overflow-hidden">
-            <img className="-mt-6" src={template.image} alt="" width={1600} height={900} />
+            <Image className="-mt-6" src={template.image} alt="" width={1600} height={900} />
             <CardHeader className="flex flex-row justify-between items-center flex-wrap">
                 <CardTitle>{template.name}</CardTitle>
                 <div className="flex flex-row gap-2">

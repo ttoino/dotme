@@ -1,7 +1,7 @@
 import TemplateCard from "@/components/TemplateCard";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { getTemplates } from "@/lib/template";
-import { categories, categoryLabels, Template } from "@/types/template";
+import { categories, categoryLabels } from "@/types/template";
 import { Search } from "lucide-react";
 
 export default async function Market() {

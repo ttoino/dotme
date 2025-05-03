@@ -14,7 +14,7 @@ function OwnedTemplateActions({}: { template: Template }) {
 }
 
 function UnownedTemplateActions({ template }: { template: Template }) {
-    const [acquireState, acquire, acquirePending] = useActionState(async () => acquireTemplate(template.id), null);
+    const [, acquire, acquirePending] = useActionState(async () => acquireTemplate(template.id), null);
 
   const isFree = template.price === 0;
 
