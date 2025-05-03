@@ -20,22 +20,21 @@ function LoggedInButtons({ user }: { user: User }) {
   const name = user.portfolio.info.name;
   const image = user.portfolio.info.profile_picture;
 
-
-    return (
-        <div className="flex items-center gap-4">
-          <Button
-            variant="ghost"
-            className="rounded-full h-10 w-10 p-0 "
-            aria-label="Profile"
-            asChild
-          >
-            <Link href="/me">
-              <Avatar>
-                <AvatarImage src={image} alt={name} />
-                <AvatarFallback>{name[0]}</AvatarFallback>
-              </Avatar>
-            </Link>
-        </Button>
+  return (
+    <div className="flex items-center gap-4">
+      <Button
+        variant="ghost"
+        className="rounded-full h-10 w-10 p-0 "
+        aria-label="Profile"
+        asChild
+      >
+        <Link href="/me">
+          <Avatar>
+            <AvatarImage src={image} alt={name} />
+            <AvatarFallback>{name[0]}</AvatarFallback>
+          </Avatar>
+        </Link>
+      </Button>
 
       {/* Settings */}
       <Button

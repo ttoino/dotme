@@ -1,5 +1,6 @@
 export interface CV {
   info: info;
+  template?: template;
   contacts: contacts;
   areas: area[];
   skills: skill[];
@@ -50,12 +51,19 @@ export interface skill {
 export interface portfolio_entry {
   type: string;
   id: number;
-  userId: number;
+  userId: string;
   foreignId: string;
   x: number;
   y: number;
   width: number;
   height: number;
+}
+
+export interface template {
+  type: string;
+  id: string;
+  includeURL?: boolean;
+  includeQR?: boolean;
 }
 
 // ===================================================================================================

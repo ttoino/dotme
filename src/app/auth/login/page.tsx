@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import { login } from "@/lib/auth";
 import { redirect } from "next/navigation";
 
@@ -15,8 +16,7 @@ export default function Register() {
 
   return (
     <form action={action}>
-      <button>Login</button>
-      {/* TODO */}
+      <Button type="submit">Login</Button>
     </form>
   );
 }
