@@ -17,6 +17,21 @@ CREATE TABLE `cv_table` (
 	CONSTRAINT `cv_table_id` PRIMARY KEY(`id`)
 );
 --> statement-breakpoint
+CREATE TABLE `portfolio_table` (
+	`id` bigint unsigned AUTO_INCREMENT NOT NULL,
+	`userId` varchar(255) NOT NULL,
+	`type` varchar(255) NOT NULL,
+	`foreignId` varchar(255) NOT NULL,
+	`x` int unsigned NOT NULL,
+	`y` int unsigned NOT NULL,
+	`width` int unsigned NOT NULL,
+	`height` int unsigned NOT NULL,
+	`createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	`updatedAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	`deletedAt` timestamp,
+	CONSTRAINT `portfolio_table_id` PRIMARY KEY(`id`)
+);
+--> statement-breakpoint
 CREATE TABLE `template_user_relation` (
 	`userId` varchar(255) NOT NULL,
 	`templateId` bigint unsigned NOT NULL,
@@ -31,6 +46,9 @@ CREATE TABLE `templates_table` (
 	`image` varchar(255) NOT NULL,
 	`category` varchar(255) NOT NULL,
 	`price` int unsigned NOT NULL,
+	`createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	`updatedAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	`deletedAt` timestamp,
 	CONSTRAINT `templates_table_id` PRIMARY KEY(`id`)
 );
 --> statement-breakpoint
