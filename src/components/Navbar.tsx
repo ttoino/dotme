@@ -16,7 +16,7 @@ export default function Navbar() {
               alt="Logo (light)"
               width={120}
               height={30}
-              className="hidden dark:block mr-2"
+              className="dark:hidden block mr-2"
               priority
             />
             <Image
@@ -24,7 +24,7 @@ export default function Navbar() {
               alt="Logo (dark)"
               width={120}
               height={30}
-              className="block dark:hidden mr-2"
+              className="dark:block hidden mr-2"
               priority
             />
         
