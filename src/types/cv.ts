@@ -4,6 +4,7 @@ export interface CV {
   contacts: contacts;
   areas: area[];
   skills: skill[];
+  portfolio: portfolio_entry[];
 }
 
 export interface info {
@@ -22,7 +23,7 @@ export interface contacts {
 
 export interface area {
   name: string;
-  entries: experience[];
+  entries?: experience[];
   links?: Link[];
 }
 
@@ -45,6 +46,17 @@ export interface role {
 export interface skill {
   title: string;
   level?: number; // 1-5
+}
+
+export interface portfolio_entry {
+  type: string;
+  id: number;
+  userId: string;
+  foreignId: string;
+  x: number;
+  y: number;
+  width: number;
+  height: number;
 }
 
 export interface template {

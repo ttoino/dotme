@@ -11,6 +11,7 @@ import { useEffect } from "react";
 import { Separator } from "@/components/ui/separator";
 import { renderRichText } from "@/lib/utils";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import ProfileGrid from "@/components/ui/profile-grid";
 // import { getUser } from "@/lib/user";
 
 export default function Portfolio(/* { id }: { id: string } */) {
@@ -73,6 +74,7 @@ export default function Portfolio(/* { id }: { id: string } */) {
       <section className="w-1/2 items-center p-3">
         <Tabs defaultValue="about-me" className="">
           <TabsList className={`w-full`}>
+            <TabsTrigger value="home">Home</TabsTrigger>
             <TabsTrigger value="about-me">About Me</TabsTrigger>
             {user_data?.portfolio.areas.map((area, index) => (
               <TabsTrigger value={area.name} key={`area-${index}`}>
@@ -80,6 +82,9 @@ export default function Portfolio(/* { id }: { id: string } */) {
               </TabsTrigger>
             ))}
           </TabsList>
+          <TabsContent value="home">
+            <ProfileGrid user={user_data!}/>
+          </TabsContent>
           <TabsContent value="about-me">
             {user_data?.portfolio.info.bio && (
               <>
@@ -99,7 +104,7 @@ export default function Portfolio(/* { id }: { id: string } */) {
               key={`area-${area.name}`}
             >
               <div className="flex flex-col gap-5">
-                {area.entries.map((entry) => (
+                {area.entries?.map((entry) => (
                   <Card className="" key={`entry-${entry.organization}`}>
                     <CardHeader>
                       <CardTitle className="text-2xl text-foreground foreground">

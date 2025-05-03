@@ -1,6 +1,7 @@
-import { RichText, skill } from "@/types/cv";
+
+import { RichText, skill, area } from "@/types/cv";
 import { Category } from "@/types/template";
-import { area } from "@/types/cv";
+import { } from "@/types/cv";
 import {
   int,
   bigint,
@@ -38,24 +39,17 @@ export const cvTable = singlestoreTable("cv_table", {
   ...timestamps,
 });
 
-// export const areasTable = singlestoreTable("areas_table", {
-//   id: int({ unsigned: true }).autoincrement().primaryKey(),
-//   cvId: bigint({ unsigned: true, mode: "bigint" }).notNull(),
-//   name: varchar({ length: 255 }).notNull(),
-//   links: json().$type<Link[]>(),
-//   ...timestamps,
-// });
-
-// export const experiencesTable = singlestoreTable("experiences_table", {
-//   id: int({ unsigned: true }).autoincrement().primaryKey(),
-//   areaId: bigint({ unsigned: true, mode: "bigint" }).notNull(),
-//   organization: varchar({ length: 255 }),
-//   description: json().$type<RichText>(),
-//   location: varchar({ length: 255 }),
-//   roles: json().$type<role[]>(),
-//   links: json().$type<Link[]>(),
-//   ...timestamps,
-// });
+export const portfolioTable = singlestoreTable("portfolio_table", {
+  id: bigint({ unsigned: true, mode: "number" }).autoincrement().primaryKey(),
+  userId: varchar({ length: 255 }).notNull(), // ligar ao user
+  type: varchar({ length: 255 }).notNull(), // saber o tipe de tabela
+  foreignId: varchar({ length: 255 }).notNull(), // ligar a tabela
+  x: int({ unsigned: true }).notNull(),
+  y: int({ unsigned: true }).notNull(),
+  width: int({ unsigned: true }).notNull(),
+  height: int({ unsigned: true }).notNull(),
+  ...timestamps,
+})
 
 export const templatesTable = singlestoreTable("templates_table", {
   id: bigint({ unsigned: true, mode: "number" }).autoincrement().primaryKey(),
@@ -65,6 +59,7 @@ export const templatesTable = singlestoreTable("templates_table", {
   image: varchar({ length: 255 }).notNull(),
   category: varchar({ length: 255 }).$type<Category>().notNull(),
   price: int({ unsigned: true }).notNull(),
+  ...timestamps,
 });
 
 export const templateUserRelation = singlestoreTable("template_user_relation", {

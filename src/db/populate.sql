@@ -130,3 +130,7 @@ VALUES (
         { "title": "Docker" }
     ] '
     );
+
+
+INSERT INTO portfolio_table (userId, type, foreignId, x, y, width, height)
+VALUES ("diogo@dotme.com", "experience", "NIAEFEUP", 0, 1, 4, 4)
