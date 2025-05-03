@@ -5,22 +5,8 @@
     {
       "idx": 0,
       "version": "1",
-      "when": 1746186392306,
-      "tag": "0000_soft_moondragon",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "1",
-      "when": 1746232678567,
-      "tag": "0001_workable_electro",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "1",
-      "when": 1746241316879,
-      "tag": "0002_fuzzy_anthem",
+      "when": 1746241778394,
+      "tag": "0000_handy_marten_broadcloak",
       "breakpoints": true
     }
   ]
