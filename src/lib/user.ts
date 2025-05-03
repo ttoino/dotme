@@ -28,25 +28,25 @@ export const getUser = async (email: string): Promise<User | null> => {
 
   const portfolio = portfolios[0];
 
-  const areas = await db()
-    .select()
-    .from(areasTable)
-    .where(eq(areasTable.cvId, portfolio.id));
+  // const areas = await db
+  //   .select()
+  //   .from(areasTable)
+  //   .where(eq(areasTable.cvId, portfolio.id));
 
-  const experiences = Object.fromEntries(
-    await Promise.all(
-      areas.map(
-        async (area) =>
-          [
-            area.id,
-            await db()
-              .select()
-              .from(experiencesTable)
-              .where(eq(experiencesTable.areaId, area.id)),
-          ] as const
-      )
-    )
-  );
+  // const experiences = Object.fromEntries(
+  //   await Promise.all(
+  //     areas.map(
+  //       async (area) =>
+  //         [
+  //           area.id,
+  //           await db
+  //             .select()
+  //             .from(experiencesTable)
+  //             .where(eq(experiencesTable.areaId, area.id)),
+  //         ] as const
+  //     )
+  //   )
+  // );
 
   const templates = await db()
     .select()
@@ -69,22 +69,22 @@ export const getUser = async (email: string): Promise<User | null> => {
         github: portfolio.contacts_github ?? undefined,
         linkedin: portfolio.contacts_linkedin ?? undefined,
       },
-      areas: areas.map((area) => ({
-        name: area.name,
-        entries: experiences[area.id].map((experience) => ({
-          organization: experience.organization ?? undefined,
-          description: experience.description ?? undefined,
-          location: experience.location ?? undefined,
-          roles: experience.roles ?? [],
-          links: experience.links ?? [],
-        })),
-        links: area.links ?? [],
-      })),
+      areas: portfolio.areas ?? [],
       skills: portfolio.skills ?? [],
     },
     templates: templates.map(t => t.templates_table),
   };
-
+  // areas: areas.map((area) => ({
+  //         name: area.name,
+  //         entries: experiences[area.id].map((experience) => ({
+  //           organization: experience.organization ?? undefined,
+  //           description: experience.description ?? undefined,
+  //           location: experience.location ?? undefined,
+  //           roles: experience.roles ?? [],
+  //           links: experience.links ?? [],
+  //         })),
+  //         links: area.links ?? [],
+  //       })),
   return userWithPortfolio;
 };
 
