@@ -4,6 +4,7 @@ import NavBar from "@/components/Navbar";
 import "./globals.css";
 import { getSession } from "@/lib/auth";
 import { SessionProvider } from "@/components/SessionProvider";
+import { ThemeProvider } from "next-themes";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,15 +29,16 @@ export default function RootLayout({
   const session = getSession();
 
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <SessionProvider sessionPromise={session}>
-          {" "}
-          <NavBar />
-          {children}
-        </SessionProvider>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <SessionProvider sessionPromise={session}>
+            <NavBar />
+            {children}
+          </SessionProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

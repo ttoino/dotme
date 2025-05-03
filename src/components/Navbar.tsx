@@ -3,23 +3,32 @@
 import Link from "next/link";
 import Image from "next/image";
 import UserButtons from "./UserButtons";
+import ThemeToggle from "./ThemeToggle";
 
 export default function Navbar() {
+
   return (
     <nav className="w-full px-4 py-3 border-b bg-background">
       <div className="container mx-auto flex items-center justify-between">
-        {/* Logo */}
         <Link href="/" className="text-xl font-bold tracking-tight">
-          <Image
-            src="/logo.svg"
-            alt="Logo"
-            width={120}
-            height={30}
-            className="mr-2"
-          />
+            <Image
+              src="/logo.svg"
+              alt="Logo (light)"
+              width={120}
+              height={30}
+              className="dark:hidden block mr-2"
+              priority
+            />
+            <Image
+              src="/dotme_logo_dark.svg"
+              alt="Logo (dark)"
+              width={120}
+              height={30}
+              className="dark:block hidden mr-2"
+              priority
+            />
+        
         </Link>
-
-        {/* Nav Links */}
         <div className="hidden md:flex gap-6 items-center text-sm font-medium text-muted-foreground">
           <Link
             href="/"
@@ -41,8 +50,10 @@ export default function Navbar() {
           </Link> */}
         </div>
 
-        {/* Right Section: Icons and Avatar */}
-        <UserButtons />
+        <div className="flex items-center gap-2">
+          <ThemeToggle />
+          <UserButtons />
+        </div>
       </div>
     </nav>
   );
