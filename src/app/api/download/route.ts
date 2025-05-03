@@ -1,9 +1,10 @@
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
+  const generatorURL = process.env.CV_GENERATOR_URL!;
   const { cvData } = await req.json();
 
-  const res = await fetch("http://localhost:5050/generate_pdf", {
+  const res = await fetch(`${generatorURL}/generate_pdf`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ cvData }),
